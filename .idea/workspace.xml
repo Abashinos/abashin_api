@@ -23,33 +23,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="base.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.0" vertical-offset="1543" max-vertical-offset="4777">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="205" column="0" selection-start="7209" selection-end="7209" vertical-scroll-proportion="0.0" vertical-offset="3119" max-vertical-offset="3519">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="handlers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/contrib/staticfiles/handlers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="0" selection-start="2298" selection-end="2298" vertical-scroll-proportion="0.0" vertical-offset="755" max-vertical-offset="1139">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="handlers.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://C:/Program Files (x86)/Python27/Lib/wsgiref/handlers.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -80,11 +53,27 @@
       <file leaf-file-name="forum.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="469" selection-end="469" vertical-scroll-proportion="0.7526042" vertical-offset="0" max-vertical-offset="391">
+            <state line="26" column="27" selection-start="745" selection-end="745" vertical-scroll-proportion="0.5802469" vertical-offset="207" max-vertical-offset="918">
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1396123560200" expanded="true" signature="290:361" placeholder="SELECT id FR..user..." />
-                <marker date="1396123560200" expanded="true" signature="290:362" placeholder="SELECT id FR..user..." />
+                <marker date="1396125008017" expanded="true" signature="290:362" placeholder="SELECT id FR..user..." />
+                <marker date="1396125008017" expanded="true" signature="476:717" placeholder="INSERT INTO ..." />
+                <marker date="1396125008017" expanded="true" signature="476:589" placeholder="INSERT INTO ..." />
+                <marker date="1396125008017" expanded="true" signature="993:1088" placeholder="SELECT id, n..forum..." />
+                <marker date="1396125008017" expanded="true" signature="993:1089" placeholder="SELECT id, n..forum..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="8" selection-start="1156" selection-end="1203" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1173">
+              <folding>
+                <marker date="1396123159894" expanded="true" signature="334:459" placeholder="INSERT INTO ..." />
+                <marker date="1396123159894" expanded="true" signature="819:932" placeholder="SELECT about..user..." />
+                <marker date="1396123159894" expanded="true" signature="1308:1404" placeholder="SELECT id, a..user..." />
               </folding>
             </state>
           </provider>
@@ -588,9 +577,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="40" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="442">
           <folding>
-            <marker date="1396123159894" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1396123159894" expanded="true" signature="-1:-1" placeholder="SELECT about..user..." />
-            <marker date="1396123159894" expanded="true" signature="-1:-1" placeholder="SELECT id, a..user..." />
+            <marker date="1396123159894" expanded="true" signature="334:459" placeholder="INSERT INTO ..." />
+            <marker date="1396123159894" expanded="true" signature="819:932" placeholder="SELECT about..user..." />
+            <marker date="1396123159894" expanded="true" signature="1308:1404" placeholder="SELECT id, a..user..." />
           </folding>
         </state>
       </provider>
@@ -857,22 +846,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="45" selection-start="242" selection-end="242" vertical-scroll-proportion="0.265625" vertical-offset="0" max-vertical-offset="1173">
+        <state line="41" column="8" selection-start="1156" selection-end="1203" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1173">
           <folding>
-            <marker date="1396123159894" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1396123159894" expanded="true" signature="-1:-1" placeholder="SELECT about..user..." />
-            <marker date="1396123159894" expanded="true" signature="-1:-1" placeholder="SELECT id, a..user..." />
+            <marker date="1396123159894" expanded="true" signature="334:459" placeholder="INSERT INTO ..." />
+            <marker date="1396123159894" expanded="true" signature="819:932" placeholder="SELECT about..user..." />
+            <marker date="1396123159894" expanded="true" signature="1308:1404" placeholder="SELECT id, a..user..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="18" selection-start="469" selection-end="469" vertical-scroll-proportion="0.7526042" vertical-offset="0" max-vertical-offset="391">
+        <state line="26" column="27" selection-start="745" selection-end="745" vertical-scroll-proportion="0.5802469" vertical-offset="207" max-vertical-offset="918">
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1396123560200" expanded="true" signature="290:361" placeholder="SELECT id FR..user..." />
-            <marker date="1396123560200" expanded="true" signature="290:362" placeholder="SELECT id FR..user..." />
+            <marker date="1396125008017" expanded="true" signature="290:362" placeholder="SELECT id FR..user..." />
+            <marker date="1396125008017" expanded="true" signature="476:717" placeholder="INSERT INTO ..." />
+            <marker date="1396125008017" expanded="true" signature="476:589" placeholder="INSERT INTO ..." />
+            <marker date="1396125008017" expanded="true" signature="993:1088" placeholder="SELECT id, n..forum..." />
+            <marker date="1396125008017" expanded="true" signature="993:1089" placeholder="SELECT id, n..forum..." />
           </folding>
         </state>
       </provider>
