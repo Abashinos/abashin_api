@@ -23,19 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="handlers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/wsgiref/handlers.py">
+      <file leaf-file-name="csrf.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/views/decorators/csrf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="0" selection-start="2886" selection-end="2886" vertical-scroll-proportion="0.0" vertical-offset="1232" max-vertical-offset="7684">
+            <state line="56" column="0" selection-start="2044" selection-end="2044" vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="1071">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="simple_server.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/wsgiref/simple_server.py">
+      <file leaf-file-name="base.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="123" column="0" selection-start="3789" selection-end="3789" vertical-scroll-proportion="0.0" vertical-offset="1929" max-vertical-offset="2720">
+            <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.0" vertical-offset="1543" max-vertical-offset="4777">
               <folding />
             </state>
           </provider>
@@ -50,31 +50,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forum.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
+      <file leaf-file-name="user.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="27" selection-start="745" selection-end="745" vertical-scroll-proportion="0.5802469" vertical-offset="207" max-vertical-offset="918">
+            <state line="133" column="57" selection-start="3589" selection-end="3589" vertical-scroll-proportion="0.026041666" vertical-offset="2217" max-vertical-offset="2924">
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
-                <marker date="1396125008017" expanded="true" signature="290:362" placeholder="SELECT id FR..user..." />
-                <marker date="1396125008017" expanded="true" signature="476:717" placeholder="INSERT INTO ..." />
-                <marker date="1396125008017" expanded="true" signature="476:589" placeholder="INSERT INTO ..." />
-                <marker date="1396125008017" expanded="true" signature="993:1088" placeholder="SELECT id, n..forum..." />
-                <marker date="1396125008017" expanded="true" signature="993:1089" placeholder="SELECT id, n..forum..." />
+                <marker date="1396209085454" expanded="true" signature="386:511" placeholder="INSERT INTO ..." />
+                <marker date="1396209085454" expanded="true" signature="871:984" placeholder="SELECT about..user..." />
+                <marker date="1396209085454" expanded="true" signature="1350:1446" placeholder="SELECT id, a..user..." />
+                <marker date="1396209085454" expanded="true" signature="2599:2677" placeholder="SELECT * FRO..followers..." />
+                <marker date="1396209085454" expanded="true" signature="2868:2935" placeholder="INSERT INTO ..." />
+                <marker date="1396209085454" expanded="true" signature="3019:3145" placeholder="UPDATE follo..." />
+                <marker date="1396209085454" expanded="true" signature="3353:3409" placeholder="SELECT * FRO..user..." />
+                <marker date="1396209085454" expanded="true" signature="3661:3739" placeholder="SELECT * FRO..followers..." />
+                <marker date="1396209085454" expanded="true" signature="3936:4062" placeholder="UPDATE follo..." />
+                <marker date="1396209085454" expanded="true" signature="4314:4370" placeholder="SELECT * FRO..user..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
+      <file leaf-file-name="schema.sql" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/schema.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="8" selection-start="1156" selection-end="1203" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="1173">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="71.4" vertical-offset="1785" max-vertical-offset="3349">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="followerService.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/followerService.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="1003">
               <folding>
-                <marker date="1396123159894" expanded="true" signature="334:459" placeholder="INSERT INTO ..." />
-                <marker date="1396123159894" expanded="true" signature="819:932" placeholder="SELECT about..user..." />
-                <marker date="1396123159894" expanded="true" signature="1308:1404" placeholder="SELECT id, a..user..." />
+                <element signature="e#0#37#0" expanded="true" />
+                <marker date="1396207025940" expanded="true" signature="175:226" placeholder="SELECT id FR..user..." />
+                <marker date="1396207025940" expanded="true" signature="175:230" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="175:228" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="175:227" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="175:230" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="175:231" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="455:463" placeholder="SELECT * fro..." />
+                <marker date="1396207025940" expanded="true" signature="455:759" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="455:537" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="455:463" placeholder="SELECT * FRO..user..." />
+                <marker date="1396207025940" expanded="true" signature="646:733" placeholder="SELECT follo..followers..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringBuilder.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/StringBuilder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="40" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,15 +132,6 @@
         <entry file="file://C:/Program Files (x86)/Python27/Lib/threading.py">
           <provider selected="true" editor-type-id="text-editor">
             <state line="762" column="0" selection-start="27028" selection-end="27028" vertical-scroll-proportion="0.0" vertical-offset="12826" max-vertical-offset="22729">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basehttp.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/servers/basehttp.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="125" column="0" selection-start="4483" selection-end="4483" vertical-scroll-proportion="0.0" vertical-offset="1759" max-vertical-offset="2737">
               <folding />
             </state>
           </provider>
@@ -131,8 +162,12 @@
         <option value="$PROJECT_DIR$/abashin_api_app/dbService.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/views.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/services/paramChecker.py" />
-        <option value="$PROJECT_DIR$/abashin_api_app/entities/user.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/entities/forum.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/helpers/followService.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/helpers/__init__.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/helpers/StringBuilder.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/helpers/followerService.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/entities/user.py" />
       </list>
     </option>
   </component>
@@ -229,6 +264,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="abashin_api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="abashin_api" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="abashin_api_app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -541,7 +594,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/abashin_api_app/entities/user.py</url>
+          <line>107</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="16" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -577,9 +637,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="40" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="442">
           <folding>
-            <marker date="1396123159894" expanded="true" signature="334:459" placeholder="INSERT INTO ..." />
-            <marker date="1396123159894" expanded="true" signature="819:932" placeholder="SELECT about..user..." />
-            <marker date="1396123159894" expanded="true" signature="1308:1404" placeholder="SELECT id, a..user..." />
+            <marker date="1396209085454" expanded="true" signature="386:511" placeholder="INSERT INTO ..." />
+            <marker date="1396209085454" expanded="true" signature="871:984" placeholder="SELECT about..user..." />
+            <marker date="1396209085454" expanded="true" signature="1350:1446" placeholder="SELECT id, a..user..." />
+            <marker date="1396209085454" expanded="true" signature="2599:2677" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396209085454" expanded="true" signature="2868:2935" placeholder="INSERT INTO ..." />
+            <marker date="1396209085454" expanded="true" signature="3019:3145" placeholder="UPDATE follo..." />
+            <marker date="1396209085454" expanded="true" signature="3353:3409" placeholder="SELECT * FRO..user..." />
+            <marker date="1396209085454" expanded="true" signature="3661:3739" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396209085454" expanded="true" signature="3936:4062" placeholder="UPDATE follo..." />
+            <marker date="1396209085454" expanded="true" signature="4314:4370" placeholder="SELECT * FRO..user..." />
           </folding>
         </state>
       </provider>
@@ -746,30 +813,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/query_executor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.33333334" vertical-offset="127" max-vertical-offset="612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/http/request.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="195" column="0" selection-start="7379" selection-end="7379" vertical-scroll-proportion="0.0" vertical-offset="3068" max-vertical-offset="8789">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/views/decorators/csrf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="2044" selection-end="2044" vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="1071">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.0" vertical-offset="574" max-vertical-offset="4777">
           <folding />
         </state>
       </provider>
@@ -823,13 +869,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="314" selection-end="314" vertical-scroll-proportion="0.35416666" vertical-offset="0" max-vertical-offset="384">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/post.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="434">
@@ -844,27 +883,103 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="8" selection-start="1156" selection-end="1203" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="1173">
-          <folding>
-            <marker date="1396123159894" expanded="true" signature="334:459" placeholder="INSERT INTO ..." />
-            <marker date="1396123159894" expanded="true" signature="819:932" placeholder="SELECT about..user..." />
-            <marker date="1396123159894" expanded="true" signature="1308:1404" placeholder="SELECT id, a..user..." />
-          </folding>
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="119">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="27" selection-start="745" selection-end="745" vertical-scroll-proportion="0.5802469" vertical-offset="207" max-vertical-offset="918">
+        <state line="25" column="0" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="918">
+          <folding>
+            <element signature="e#0#37#0" expanded="false" />
+            <marker date="1396195135574" expanded="true" signature="-1:-1" placeholder="SELECT id FR..user..." />
+            <marker date="1396195135574" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1396195135574" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1396195135574" expanded="true" signature="-1:-1" placeholder="SELECT id, n..forum..." />
+            <marker date="1396195135574" expanded="true" signature="-1:-1" placeholder="SELECT id, n..forum..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/StringBuilder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="40" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/views/decorators/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="2044" selection-end="2044" vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="1071">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.0" vertical-offset="574" max-vertical-offset="4777">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="356" selection-end="356" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/schema.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="71.4" vertical-offset="1785" max-vertical-offset="3315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/query_executor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="127" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/followerService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="277" selection-end="277" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="1003">
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1396125008017" expanded="true" signature="290:362" placeholder="SELECT id FR..user..." />
-            <marker date="1396125008017" expanded="true" signature="476:717" placeholder="INSERT INTO ..." />
-            <marker date="1396125008017" expanded="true" signature="476:589" placeholder="INSERT INTO ..." />
-            <marker date="1396125008017" expanded="true" signature="993:1088" placeholder="SELECT id, n..forum..." />
-            <marker date="1396125008017" expanded="true" signature="993:1089" placeholder="SELECT id, n..forum..." />
+            <marker date="1396207025940" expanded="true" signature="175:226" placeholder="SELECT id FR..user..." />
+            <marker date="1396207025940" expanded="true" signature="175:230" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="175:228" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="175:227" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="175:230" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="175:231" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="455:463" placeholder="SELECT * fro..." />
+            <marker date="1396207025940" expanded="true" signature="455:759" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="455:537" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="455:463" placeholder="SELECT * FRO..user..." />
+            <marker date="1396207025940" expanded="true" signature="646:733" placeholder="SELECT follo..followers..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="57" selection-start="3589" selection-end="3589" vertical-scroll-proportion="0.026041666" vertical-offset="2217" max-vertical-offset="2924">
+          <folding>
+            <marker date="1396209085454" expanded="true" signature="386:511" placeholder="INSERT INTO ..." />
+            <marker date="1396209085454" expanded="true" signature="871:984" placeholder="SELECT about..user..." />
+            <marker date="1396209085454" expanded="true" signature="1350:1446" placeholder="SELECT id, a..user..." />
+            <marker date="1396209085454" expanded="true" signature="2599:2677" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396209085454" expanded="true" signature="2868:2935" placeholder="INSERT INTO ..." />
+            <marker date="1396209085454" expanded="true" signature="3019:3145" placeholder="UPDATE follo..." />
+            <marker date="1396209085454" expanded="true" signature="3353:3409" placeholder="SELECT * FRO..user..." />
+            <marker date="1396209085454" expanded="true" signature="3661:3739" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396209085454" expanded="true" signature="3936:4062" placeholder="UPDATE follo..." />
+            <marker date="1396209085454" expanded="true" signature="4314:4370" placeholder="SELECT * FRO..user..." />
           </folding>
         </state>
       </provider>

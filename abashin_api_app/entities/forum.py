@@ -24,10 +24,10 @@ def create(**data):
     cur.close()
     db.close()
 
-    return details(db, data)
+    return details(data, db)
 
 
-def details(db=dbService.connect(), **data):
+def details(data, db=dbService.connect()):
 
     if 'short_name' not in data:
         raise Exception("parameter 'short_name' is required")
