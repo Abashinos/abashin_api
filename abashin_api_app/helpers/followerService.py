@@ -5,7 +5,7 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
 
     cur = db.cursor()
     cur.execute("""SELECT * FROM user
-                   WHERE email = '%s'""" % data['user'])
+                   WHERE email = %s""" % data['user'])
     user = cur.fetchone()
     cur.close()
 
