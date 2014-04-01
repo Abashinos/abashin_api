@@ -5,7 +5,7 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
 
     cur = db.cursor()
     cur.execute("""SELECT * FROM user
-                   WHERE email = %s""" % data['user'])
+                   WHERE email = %s""", (data['user'],))
     user = cur.fetchone()
     cur.close()
 
@@ -13,6 +13,7 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
         raise Exception('No such user found')
 
     query = StringBuilder()
+    params = ()
 
     if mode[1] == 'long':
         query.append("""SELECT *""")
@@ -22,16 +23,19 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
     query.append(""" FROM user
                   WHERE email in""")
     if mode[0] == 'followers':
-        query.append (""" (SELECT follower
+        query.append(""" (SELECT follower
                     FROM followers
-                    WHERE followee = '%s' AND isFollowing = 1)""" % user['email'])
+                    WHERE followee = %s AND isFollowing = 1)""")
+        params += (user['email'],)
     else:
-        query.append (""" (SELECT followee
+        query.append(""" (SELECT followee
                     FROM followers
-                    WHERE follower = '%s' AND isFollowing = 1)""" % user['email'])
+                    WHERE follower = %s AND isFollowing = 1)""")
+        params += (user['email'],)
 
     if 'since_id' in data:
-        query.append(""" AND id >= %s""" % data['since_id'])
+        query.append(""" AND id >= %s""")
+        params += (data['since_id'],)
     if mode[1] == 'long':
         query.append(""" ORDER BY name %s""" % data['order'])
 
@@ -39,7 +43,7 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
         query.append(""" LIMIT %s""" % data['limit'])
 
     cur = db.cursor()
-    cur.execute(str(query))
+    cur.execute(str(query), params)
     if mode[1] == 'long':
         users = cur.fetchall()
     else:

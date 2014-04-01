@@ -12,9 +12,9 @@ def create(**data):
     cur = db.cursor()
     try:
         cur.execute("""INSERT INTO user (email, username, password, name, about, isAnonymous)
-                       VALUES (%s, %s, %s, %s, %s, %s)""" %
+                       VALUES (%s, %s, %s, %s, %s, %s)""",
                    (data['email'], data['username'], data['password'], data['name'], data['about'],
-                    int(data['isAnonymous'])))
+                    data['isAnonymous'],))
         db.commit()
     except Exception as e:
         db.rollback()
@@ -27,8 +27,8 @@ def create(**data):
     cur = db.cursor()
     cur.execute("""SELECT about, email, id, isAnonymous, name, username
                    FROM user
-                   WHERE email=%s""" %
-               (data['email']))
+                   WHERE email = %s""",
+               (data['email'],))
     user = cur.fetchone()
 
     user['isAnonymous'] = bool(user['isAnonymous'])
@@ -48,7 +48,7 @@ def details(**data):
 
 #TODO: Subscriptions
     cur.execute("""SELECT id, about, email, username, name, isAnonymous
-                   FROM user WHERE email = %s""" % data['user'])
+                   FROM user WHERE email = %s""", (data['user'],))
     user = cur.fetchone()
     cur.close()
 
@@ -98,7 +98,7 @@ def follow(**data):
     cur = db.cursor()
 
     cur.execute("""SELECT * FROM followers
-                   WHERE follower = %s AND followee = %s""" % (data['follower'], data['followee']))
+                   WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
     exists = cur.fetchone()
     cur.close()
 
@@ -106,11 +106,11 @@ def follow(**data):
     try:
         if not exists or len(exists) == 0:
             cur.execute("""INSERT INTO followers
-                           VALUES (%s, %s, 1)""" % (data['follower'], data['followee']))
+                           VALUES (%s, %s, 1)""", (data['follower'], data['followee'],))
         else:
             cur.execute("""UPDATE followers
                            SET isFollowing = 1
-                           WHERE follower = %s AND followee = %s""" % (data['follower'], data['followee']))
+                           WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
         db.commit()
     except Exception as e:
         db.rollback()
@@ -121,7 +121,7 @@ def follow(**data):
 
     cur = db.cursor()
     cur.execute("""SELECT * FROM user
-                   WHERE email = '%s'""" % data['follower'])
+                   WHERE email = %s""", (data['follower'],))
     user = cur.fetchone()
     cur.close()
     db.close()
@@ -136,7 +136,7 @@ def unfollow(**data):
     cur = db.cursor()
 
     cur.execute("""SELECT * FROM followers
-                   WHERE follower = %s AND followee = %s""" % (data['follower'], data['followee']))
+                   WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
     exists = cur.fetchone()
     cur.close()
 
@@ -146,23 +146,52 @@ def unfollow(**data):
             cur = db.cursor()
             cur.execute("""UPDATE followers
                            SET isFollowing = 0
-                           WHERE follower = %s AND followee = %s""" % (data['follower'], data['followee']))
+                           WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
             db.commit()
         except Exception as e:
+            cur.close()
             db.rollback()
             db.close()
             raise e
-        finally:
-            cur.close()
+        cur.close()
 
     cur = db.cursor()
     cur.execute("""SELECT * FROM user
-                   WHERE email = '%s'""" % data['follower'])
+                   WHERE email = %s""", (data['follower'],))
     user = cur.fetchone()
     cur.close()
     db.close()
 
     return user
 
+
+def updateProfile(**data):
+
+    check_required_params(data, ['about', 'user', 'name'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    try:
+        cur.execute("""UPDATE user
+                       SET about = %s, name = %s
+                       WHERE email = %s""",
+                    (data['about'], data['name'], data['user'],))
+        db.commit()
+    except Exception as e:
+        cur.close()
+        db.rollback()
+        db.close()
+        raise e
+
+    cur.close()
+
+    cur = db.cursor()
+    cur.execute("""SELECT * FROM user
+                   WHERE email = %s""", (data['user'],))
+    user = cur.fetchone()
+    cur.close()
+    db.close()
+
+    return user
 
 
