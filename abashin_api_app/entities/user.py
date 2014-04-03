@@ -1,5 +1,6 @@
 from abashin_api_app import dbService
 from abashin_api_app.helpers import followerService
+from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.paramChecker import *
 
 
@@ -45,13 +46,12 @@ def details(**data):
 
     db = dbService.connect()
     cur = db.cursor()
-
-#TODO: Subscriptions
     cur.execute("""SELECT id, about, email, username, name, isAnonymous
                    FROM user WHERE email = %s""", (data['user'],))
     user = cur.fetchone()
     cur.close()
 
+    user['subscriptions'] = listSubscriptions(data['user'], db)
     user['followers'] = followerService.listFollowersOrFollowees(data, ['followers', 'short'], db)
     user['following'] = followerService.listFollowersOrFollowees(data, ['followees', 'short'], db)
 
@@ -114,6 +114,7 @@ def follow(**data):
         db.commit()
     except Exception as e:
         db.rollback()
+        cur.close()
         db.close()
         raise e
 
@@ -185,11 +186,8 @@ def updateProfile(**data):
 
     cur.close()
 
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM user
-                   WHERE email = %s""", (data['user'],))
-    user = cur.fetchone()
-    cur.close()
+    user = details(**data)
+
     db.close()
 
     return user

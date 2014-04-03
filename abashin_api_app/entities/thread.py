@@ -264,3 +264,65 @@ def vote(**data):
 
     return thread
 
+
+def subscribe(**data):
+
+    check_required_params(data, ['thread', 'user'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    cur.execute("""SELECT * FROM subscription
+                   WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
+    exists = cur.fetchone()
+    cur.close()
+
+    cur = db.cursor()
+    try:
+        if not exists or len(exists) == 0:
+            cur.execute("""INSERT INTO subscription
+                           VALUES (%s, %s, 1)""", (data['user'], data['thread'],))
+        else:
+            cur.execute("""UPDATE subscription
+                           SET isSubscribed = 1
+                           WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        cur.close()
+        db.close()
+        raise e
+
+    cur.close()
+    db.close()
+
+    return {'thread': data['thread'], 'user': data['user']}
+
+
+def unsubscribe(**data):
+
+    check_required_params(data, ['thread', 'user'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    cur.execute("""SELECT * FROM subscription
+                   WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
+    exists = cur.fetchone()
+    cur.close()
+
+    cur = db.cursor()
+    try:
+        if exists and len(exists) != 0:
+            cur.execute("""UPDATE subscription
+                           SET isSubscribed = 0
+                           WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
+            db.commit()
+    except Exception as e:
+        db.rollback()
+        cur.close()
+        db.close()
+        raise e
+
+    cur.close()
+    db.close()
+
+    return {'thread': data['thread'], 'user': data['user']}
