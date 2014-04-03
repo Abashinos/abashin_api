@@ -1,5 +1,5 @@
 from abashin_api_app import dbService
-from StringBuilder import *
+from abashin_api_app.services.StringBuilder import *
 
 def listFollowersOrFollowees(data, mode, db=dbService.connect()):
 

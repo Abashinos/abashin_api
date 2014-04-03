@@ -18,12 +18,12 @@ def create(**data):
         db.commit()
     except Exception as e:
         db.rollback()
-        raise e
-    finally:
         cur.close()
         db.close()
+        raise e
 
-    db = dbService.connect()
+    cur.close()
+
     cur = db.cursor()
     cur.execute("""SELECT about, email, id, isAnonymous, name, username
                    FROM user
