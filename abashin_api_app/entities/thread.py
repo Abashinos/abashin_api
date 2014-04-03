@@ -1,4 +1,7 @@
 from abashin_api_app import dbService
+from abashin_api_app.entities import forum
+from abashin_api_app.helpers import followerService
+from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.StringBuilder import StringBuilder
 from abashin_api_app.services.paramChecker import check_required_params, check_optional_param
 
@@ -40,17 +43,35 @@ def create(**data):
 def details(**data):
 
     check_required_params(data, ['thread'])
-    check_optional_param(data, 'related', [])
 
     db = dbService.connect()
     cur = db.cursor()
 
-    #TODO: likes, points, posts
     cur.execute("""SELECT *
                    FROM thread
                    WHERE id = %s""", (data['thread'],))
     thread = cur.fetchone()
     cur.close()
+
+    if 'related' in data:
+        if data['related'] == 'user':
+            cur = db.cursor()
+
+            cur.execute("""SELECT id, email, isAnonymous, name
+                          FROM user
+                          WHERE email = %s""", (thread['user'],))
+            user_data = cur.fetchone()
+            cur.close()
+
+            user_data['isAnonymous'] = bool(user_data['isAnonymous'])
+            user_data['subscriptions'] = listSubscriptions(thread['user'], db)
+            user_data['followers'] = followerService.listFollowersOrFollowees(thread, ['followers', 'short'], db)
+            user_data['following'] = followerService.listFollowersOrFollowees(thread, ['followees', 'short'], db)
+            thread['user'] = user_data
+        elif data['related'] == 'forum':
+            forum_data = {'short_name': thread['forum']}
+            thread['forum'] = forum.details(**forum_data)
+
     db.close()
 
     return thread

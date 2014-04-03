@@ -1,6 +1,7 @@
 from abashin_api_app import dbService
 from abashin_api_app.helpers import followerService
 from abashin_api_app.helpers.subscriptionService import listSubscriptions
+from abashin_api_app.services.StringBuilder import StringBuilder
 from abashin_api_app.services.paramChecker import check_required_params, check_optional_param
 
 
@@ -45,7 +46,7 @@ def details(**data):
 
     data['user'] = forum['user']
 
-    if 'related' in data and len(data['related']) != 0:
+    if 'related' in data and len(data['related']) != 0 and data['related'] == 'user':
         cur = db.cursor()
 
         cur.execute("""SELECT id, email, isAnonymous, name
@@ -54,12 +55,15 @@ def details(**data):
         user_data = cur.fetchone()
         cur.close()
 
+        user_data['isAnonymous'] = bool(user_data['isAnonymous'])
         user_data['subscriptions'] = listSubscriptions(data['user'], db)
         user_data['followers'] = followerService.listFollowersOrFollowees(data, ['followers', 'short'], db)
         user_data['following'] = followerService.listFollowersOrFollowees(data, ['followees', 'short'], db)
-        user_data['isAnonymous'] = bool(user_data['isAnonymous'])
+
         forum['user'] = user_data
 
     db.close()
 
     return forum
+
+
