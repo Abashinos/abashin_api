@@ -68,7 +68,7 @@ def details(**data):
             user_data['followers'] = followerService.listFollowersOrFollowees(thread, ['followers', 'short'], db)
             user_data['following'] = followerService.listFollowersOrFollowees(thread, ['followees', 'short'], db)
             thread['user'] = user_data
-        elif data['related'] == 'forum':
+        if data['related'] == 'forum':
             forum_data = {'short_name': thread['forum']}
             thread['forum'] = forum.details(**forum_data)
 
