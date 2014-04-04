@@ -15,7 +15,7 @@ def create(**data):
         cur.execute("""INSERT INTO user (email, username, password, name, about, isAnonymous)
                        VALUES (%s, %s, %s, %s, %s, %s)""",
                    (data['email'], data['username'], data['password'], data['name'], data['about'],
-                    data['isAnonymous'],))
+                    int(data['isAnonymous']),))
         db.commit()
     except Exception as e:
         db.rollback()
