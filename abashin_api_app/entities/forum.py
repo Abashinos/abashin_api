@@ -30,12 +30,11 @@ def create(**data):
     return forum
 
 
-def details(**data):
+def details(db=dbService.connect(), **data):
 
     if 'short_name' not in data:
         raise Exception("parameter 'short_name' is required")
 
-    db = dbService.connect()
     cur = db.cursor()
 
     cur.execute("""SELECT *

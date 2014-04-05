@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `dbms`.`forum` (
     REFERENCES `dbms`.`user` (`email`)
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -139,10 +139,12 @@ CREATE TABLE IF NOT EXISTS `dbms`.`post` (
   `parent` BIGINT(20) UNSIGNED NOT NULL,
   `user` VARCHAR(200) NOT NULL,
   `thread` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`id`, `user`, `thread`),
+  `forum` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`, `user`, `thread`, `forum`),
   INDEX `fk_post_user1_idx` (`user` ASC),
   INDEX `fk_post_thread1_idx` (`thread` ASC),
   INDEX `fk_post_post1_idx` (`parent` ASC),
+  INDEX `fk_post_forum1_idx` (`forum` ASC),
   CONSTRAINT `fk_post_post1`
     FOREIGN KEY (`parent`)
     REFERENCES `dbms`.`post` (`id`)
@@ -156,6 +158,11 @@ CREATE TABLE IF NOT EXISTS `dbms`.`post` (
   CONSTRAINT `fk_post_user1`
     FOREIGN KEY (`user`)
     REFERENCES `dbms`.`user` (`email`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_forum1`
+    FOREIGN KEY (`forum`)
+    REFERENCES `dbms`.`forum` (`short_name`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

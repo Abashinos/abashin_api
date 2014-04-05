@@ -39,12 +39,11 @@ def create(**data):
     return user
 
 
-def details(**data):
+def details(db=dbService.connect(), **data):
 
     if 'user' not in data:
         raise Exception("parameter 'user' is required")
 
-    db = dbService.connect()
     cur = db.cursor()
     cur.execute("""SELECT id, about, email, username, name, isAnonymous
                    FROM user WHERE email = %s""", (data['user'],))
@@ -120,12 +119,8 @@ def follow(**data):
 
     cur.close()
 
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM user
-                   WHERE email = %s""", (data['follower'],))
-    user = cur.fetchone()
-    cur.close()
-    db.close()
+    user = {'user': data['follower']}
+    user = details(db, **user)
 
     return user
 
@@ -156,12 +151,8 @@ def unfollow(**data):
             raise e
         cur.close()
 
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM user
-                   WHERE email = %s""", (data['follower'],))
-    user = cur.fetchone()
-    cur.close()
-    db.close()
+    user = {'user': data['follower']}
+    user = details(db, **user)
 
     return user
 
@@ -186,9 +177,7 @@ def updateProfile(**data):
 
     cur.close()
 
-    user = details(**data)
-
-    db.close()
+    user = details(db, **data)
 
     return user
 

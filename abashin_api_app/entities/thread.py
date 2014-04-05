@@ -37,14 +37,16 @@ def create(**data):
     cur.close()
     db.close()
 
+    thread['isDeleted'] = bool(thread['isDeleted'])
+    thread['isClosed'] = bool(thread['isClosed'])
+
     return thread
 
 
-def details(**data):
+def details(db=dbService.connect(), **data):
 
     check_required_params(data, ['thread'])
 
-    db = dbService.connect()
     cur = db.cursor()
 
     cur.execute("""SELECT *
@@ -53,8 +55,11 @@ def details(**data):
     thread = cur.fetchone()
     cur.close()
 
+    thread['isDeleted'] = bool(thread['isDeleted'])
+    thread['isClosed'] = bool(thread['isClosed'])
+
     if 'related' in data:
-        if data['related'] == 'user':
+        if 'user' in data['related']:
             cur = db.cursor()
 
             cur.execute("""SELECT id, email, isAnonymous, name
@@ -68,9 +73,9 @@ def details(**data):
             user_data['followers'] = followerService.listFollowersOrFollowees(thread, ['followers', 'short'], db)
             user_data['following'] = followerService.listFollowersOrFollowees(thread, ['followees', 'short'], db)
             thread['user'] = user_data
-        if data['related'] == 'forum':
+        if 'forum' in data['related']:
             forum_data = {'short_name': thread['forum']}
-            thread['forum'] = forum.details(**forum_data)
+            thread['forum'] = forum.details(db, **forum_data)
 
     db.close()
 
