@@ -1,4 +1,5 @@
 from abashin_api_app import dbService
+from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.StringBuilder import *
 
 def listFollowersOrFollowees(data, mode, db=dbService.connect()):
@@ -46,6 +47,11 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
     cur.execute(str(query), params)
     if mode[1] == 'long':
         users = cur.fetchall()
+        for user in users:
+            user['subscriptions'] = listSubscriptions(user['email'], db)
+            temp_user = {'user' : user['email']}
+            user['followers'] = listFollowersOrFollowees(temp_user, ['followers', 'short'], db)
+            user['following'] = listFollowersOrFollowees(temp_user, ['followees', 'short'], db)
     else:
         temp_users = cur.fetchall()
         users = []
