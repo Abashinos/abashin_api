@@ -30,16 +30,19 @@ def create(**data):
     return forum
 
 
-def details(db=dbService.connect(), close_db=True, **data):
+def details(db=0, close_db=True, **data):
 
-    if 'short_name' not in data:
-        raise Exception("parameter 'short_name' is required")
+    if 'forum' not in data:
+        raise Exception("parameter 'forum' is required")
+
+    if db == 0:
+        db = dbService.connect()
 
     cur = db.cursor()
 
     cur.execute("""SELECT *
                    FROM forum
-                   WHERE short_name = %s""", (data['short_name'],))
+                   WHERE short_name = %s""", (data['forum'],))
     forum = cur.fetchone()
     cur.close()
 
@@ -100,6 +103,8 @@ def listPosts(**data):
         post['isEdited'] = bool(post['isEdited'])
         post['isHighlighted'] = bool(post['isHighlighted'])
         post['isSpam'] = bool(post['isSpam'])
+        post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
+
         if 'related' in data:
             if 'thread' in data['related']:
                 thread_data = {'thread': post['thread']}
@@ -110,7 +115,7 @@ def listPosts(**data):
                 user_data = user.details(db, False, **user_data)
                 post['user'] = user_data
             if 'forum' in data['related']:
-                forum_data = {'short_name': post['forum']}
+                forum_data = {'forum': post['forum']}
                 forum_data = details(db, False, **forum_data)
                 post['forum'] = forum_data
 
@@ -147,6 +152,7 @@ def listThreads(**data):
     for thread in threads:
         thread['isDeleted'] = bool(thread['isDeleted'])
         thread['isClosed'] = bool(thread['isClosed'])
+        thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
 
         if 'related' in data:
             if 'user' in data['related']:
@@ -154,7 +160,7 @@ def listThreads(**data):
                 user_data = user.details(db, False, **user_data)
                 thread['user'] = user_data
             if 'forum' in data['related']:
-                forum_data = {'short_name': thread['forum']}
+                forum_data = {'forum': thread['forum']}
                 forum_data = details(db, False, **forum_data)
                 thread['forum'] = forum_data
 
@@ -191,7 +197,6 @@ def listUsers(**data):
     cur.close()
 
     for user in users:
-        del user['password']
         user['subscriptions'] = listSubscriptions(user['email'], db)
         user_data = {'user': user['email']}
         user['followers'] = followerService.listFollowersOrFollowees(user_data, ['followers', 'short'], db)

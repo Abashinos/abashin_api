@@ -7,15 +7,15 @@ from abashin_api_app.services.paramChecker import *
 
 def create(**data):
 
-    check_required_params(data, ['email', 'username', 'name', 'about', 'password'])
+    check_required_params(data, ['email', 'username', 'name', 'about'])
     check_optional_param(data, 'isAnonymous', False)
 
     db = dbService.connect()
     cur = db.cursor()
     try:
-        cur.execute("""INSERT INTO user (email, username, password, name, about, isAnonymous)
-                       VALUES (%s, %s, %s, %s, %s, %s)""",
-                   (data['email'], data['username'], data['password'], data['name'], data['about'],
+        cur.execute("""INSERT INTO user (email, username, name, about, isAnonymous)
+                       VALUES (%s, %s, %s, %s, %s)""",
+                   (data['email'], data['username'], data['name'], data['about'],
                     int(data['isAnonymous']),))
         db.commit()
     except Exception as e:
@@ -40,13 +40,16 @@ def create(**data):
     return user
 
 
-def details(db=dbService.connect(), close_db=True, **data):
+def details(db=0, close_db=True, **data):
 
     if 'user' not in data:
         raise Exception("parameter 'user' is required")
 
+    if db == 0:
+        db = dbService.connect()
+
     cur = db.cursor()
-    cur.execute("""SELECT id, about, email, username, name, isAnonymous
+    cur.execute("""SELECT *
                    FROM user WHERE email = %s""", (data['user'],))
     user = cur.fetchone()
     cur.close()
@@ -212,6 +215,7 @@ def listPosts(**data):
     db.close()
 
     for post in posts:
+        post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
         post['isApproved'] = bool(post['isApproved'])
         post['isDeleted'] = bool(post['isDeleted'])
         post['isEdited'] = bool(post['isEdited'])

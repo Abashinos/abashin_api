@@ -1,6 +1,7 @@
 
 from abashin_api_app import dbService
 from abashin_api_app.entities import user, thread, forum
+from abashin_api_app.services.StringBuilder import StringBuilder
 from abashin_api_app.services.paramChecker import check_required_params, check_optional_param
 
 
@@ -34,6 +35,13 @@ def create(**data):
     cur.close()
 
     cur = db.cursor()
+    cur.execute("""UPDATE thread
+                   SET posts = posts + 1
+                   WHERE id = %s""", (data['thread'],))
+    db.commit()
+    cur.close()
+
+    cur = db.cursor()
     cur.execute("""SELECT id, date, forum, isApproved, isDeleted, isEdited,
                    isHighlighted, isSpam, message, thread, user
                    FROM post
@@ -42,18 +50,22 @@ def create(**data):
     cur.close()
     db.close()
 
+    post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
     return post
 
 
-def details(db=dbService.connect(), close_db=True, **data):
+def details(db=0, close_db=True, **data):
 
     check_required_params(data, ['post'])
 
+    if db == 0:
+        db = dbService.connect()
     cur = db.cursor()
     cur.execute("""SELECT * FROM post
                    WHERE id = %s""", (data['post'],))
     post = cur.fetchone()
     cur.close()
+    post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
 
     if 'related' in data:
         if 'user' in data['related']:
@@ -61,7 +73,7 @@ def details(db=dbService.connect(), close_db=True, **data):
         if 'thread' in data['related']:
             post['thread'] = thread.details(db, False, **post)
         if 'forum' in data['related']:
-            short_name = {'short_name': post['forum']}
+            short_name = {'forum': post['forum']}
             post['forum'] = forum.details(db, False, **short_name)
 
     if close_db:
@@ -72,24 +84,42 @@ def details(db=dbService.connect(), close_db=True, **data):
 
 def list(**data):
 
+    check_optional_param(data, 'order', 'desc')
+
     if 'thread' not in data and 'forum' not in data:
         raise Exception("thread or forum is required")
     if 'thread' in data and 'forum' in data:
         raise Exception("choose either thread or forum")
 
+    query = StringBuilder()
+    params = ()
+
+    if 'thread' in data:
+        query.append("""SELECT * FROM post
+                       WHERE thread = %s""")
+        params += (data['thread'],)
+    elif 'forum' in data:
+        query.append("""SELECT * FROM post
+                       WHERE forum = %s""")
+        params += (data['forum'],)
+
+    if 'since' in data:
+        query.append(""" AND date >= %s""")
+        params += (data['since'],)
+
+    query.append(""" ORDER BY date %s""" % data['order'])
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
     db = dbService.connect()
     cur = db.cursor()
-    posts = []
-    if 'thread' in data:
-        cur.execute("""SELECT * FROM post
-                       WHERE thread = %s""", (data['thread'],))
-        posts = cur.fetchall()
-    elif 'forum' in data:
-        cur.execute("""SELECT * FROM post
-                       WHERE forum = %s""", (data['forum'],))
-        posts = cur.fetchall()
+    cur.execute(str(query), params)
+    posts = cur.fetchall()
     cur.close()
     db.close()
+
+    for post in posts:
+        post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
 
     return posts
 

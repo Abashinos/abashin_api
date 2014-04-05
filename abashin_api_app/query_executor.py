@@ -1,3 +1,4 @@
+import re
 from abashin_api_app.entities import forum, user, thread, post
 
 
@@ -10,6 +11,7 @@ def execute(entity_name, method, request_data):
         "post": post
     }[entity_name]
 
+    method = re.sub('/', '', method)
     func_execution = getattr(entity, method)
 
     try:

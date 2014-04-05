@@ -1,5 +1,5 @@
+import time
 from abashin_api_app import dbService
-
 from abashin_api_app.helpers import followerService
 from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.StringBuilder import StringBuilder
@@ -37,17 +37,20 @@ def create(**data):
     cur.close()
     db.close()
 
+    thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
     thread['isDeleted'] = bool(thread['isDeleted'])
     thread['isClosed'] = bool(thread['isClosed'])
 
     return thread
 
 
-def details(db=dbService.connect(), close_db=True, **data):
+def details(db=0, close_db=True, **data):
     from abashin_api_app.entities import forum
 
     check_required_params(data, ['thread'])
 
+    if db == 0:
+        db = dbService.connect()
     cur = db.cursor()
 
     cur.execute("""SELECT *
@@ -56,6 +59,7 @@ def details(db=dbService.connect(), close_db=True, **data):
     thread = cur.fetchone()
     cur.close()
 
+    thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
     thread['isDeleted'] = bool(thread['isDeleted'])
     thread['isClosed'] = bool(thread['isClosed'])
 
@@ -63,7 +67,7 @@ def details(db=dbService.connect(), close_db=True, **data):
         if 'user' in data['related']:
             cur = db.cursor()
 
-            cur.execute("""SELECT id, email, isAnonymous, name
+            cur.execute("""SELECT id, email, isAnonymous, name, username, about
                           FROM user
                           WHERE email = %s""", (thread['user'],))
             user_data = cur.fetchone()
@@ -75,8 +79,8 @@ def details(db=dbService.connect(), close_db=True, **data):
             user_data['following'] = followerService.listFollowersOrFollowees(thread, ['followees', 'short'], db)
             thread['user'] = user_data
         if 'forum' in data['related']:
-            forum_data = {'short_name': thread['forum']}
-            thread['forum'] = forum.details(db, **forum_data)
+            forum_data = {'forum': thread['forum']}
+            thread['forum'] = forum.details(db, False, **forum_data)
 
     if close_db:
         db.close()
@@ -146,6 +150,9 @@ def list(**data):
     cur.execute(str(query), params)
     list = cur.fetchall()
     cur.close()
+
+    for thread in list:
+        thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
 
     return list
 
@@ -248,6 +255,7 @@ def update(**data):
     thread = cur.fetchone()
     cur.close()
     db.close()
+    thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
 
     return thread
 
@@ -379,6 +387,7 @@ def listPosts(**data):
     db.close()
 
     for post in posts:
+        post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
         post['isApproved'] = bool(post['isApproved'])
         post['isDeleted'] = bool(post['isDeleted'])
         post['isEdited'] = bool(post['isEdited'])

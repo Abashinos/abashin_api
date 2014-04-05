@@ -13,7 +13,7 @@ def response_page(request, entity, method):
         request_data = request.GET.dict()
     response_data = execute(entity, method, request_data)
 
-    return HttpResponse(json.dumps(response_data, default=DateTimeEncoder().default, ensure_ascii=False),
+    return HttpResponse(json.dumps(response_data, ensure_ascii=False),
                         content_type='application/json')
 
 
