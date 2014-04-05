@@ -1,5 +1,5 @@
 from abashin_api_app import dbService
-from abashin_api_app.entities import forum
+
 from abashin_api_app.helpers import followerService
 from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.StringBuilder import StringBuilder
@@ -43,7 +43,8 @@ def create(**data):
     return thread
 
 
-def details(db=dbService.connect(), **data):
+def details(db=dbService.connect(), close_db=True, **data):
+    from abashin_api_app.entities import forum
 
     check_required_params(data, ['thread'])
 
@@ -77,7 +78,8 @@ def details(db=dbService.connect(), **data):
             forum_data = {'short_name': thread['forum']}
             thread['forum'] = forum.details(db, **forum_data)
 
-    db.close()
+    if close_db:
+        db.close()
 
     return thread
 
@@ -281,12 +283,7 @@ def vote(**data):
 
     cur.close()
 
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM thread
-                   WHERE id = %s""", (data['thread'],))
-    thread = cur.fetchone()
-    cur.close()
-    db.close()
+    thread = details(db, True, **data)
 
     return thread
 
@@ -352,3 +349,40 @@ def unsubscribe(**data):
     db.close()
 
     return {'thread': data['thread'], 'user': data['user']}
+
+
+def listPosts(**data):
+
+    check_required_params(data, ['thread'])
+    check_optional_param(data, 'order', 'desc')
+
+    query = StringBuilder()
+    params = ()
+    query.append("""SELECT * FROM post
+                    WHERE thread = %s""")
+    params += (data['thread'],)
+
+    if 'since' in data:
+        query.append(""" AND date >= %s""")
+        params += (data['since'],)
+
+    query.append(""" ORDER BY date %s""" % data['order'])
+
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    cur.execute(str(query), params)
+    posts = cur.fetchall()
+    cur.close()
+    db.close()
+
+    for post in posts:
+        post['isApproved'] = bool(post['isApproved'])
+        post['isDeleted'] = bool(post['isDeleted'])
+        post['isEdited'] = bool(post['isEdited'])
+        post['isHighlighted'] = bool(post['isHighlighted'])
+        post['isSpam'] = bool(post['isSpam'])
+
+    return posts

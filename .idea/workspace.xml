@@ -23,45 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="csrf.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/views/decorators/csrf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="0" selection-start="2044" selection-end="2044" vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1105">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.0" vertical-offset="1921" max-vertical-offset="5032">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="paramChecker.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/abashin_api_app/services/paramChecker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="39" selection-start="208" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="323">
+            <state line="7" column="39" selection-start="208" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/post.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="24" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.68209875" vertical-offset="255" max-vertical-offset="969">
-              <folding>
-                <element signature="e#1#38#0" expanded="true" />
-                <marker date="1396692941394" expanded="true" signature="664:901" placeholder="INSERT INTO ..." />
-                <marker date="1396692941394" expanded="true" signature="664:888" placeholder="INSERT INTO ..." />
-                <marker date="1396692941394" expanded="true" signature="664:888" placeholder="INSERT INTO ..." />
-                <marker date="1396692941394" expanded="true" signature="1307:1355" placeholder="SELECT * FRO..post..." />
-                <marker date="1396692941394" expanded="true" signature="1307:1356" placeholder="SELECT * FRO..post..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -69,47 +35,37 @@
       <file leaf-file-name="thread.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/thread.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="39" selection-start="1947" selection-end="1947" vertical-scroll-proportion="3.3846154" vertical-offset="989" max-vertical-offset="6035">
+            <state line="58" column="4" selection-start="1880" selection-end="1977" vertical-scroll-proportion="0.0" vertical-offset="839" max-vertical-offset="6681">
               <folding>
-                <marker date="1396692014015" expanded="true" signature="656:854" placeholder="INSERT INTO ..." />
-                <marker date="1396692014015" expanded="true" signature="1214:1375" placeholder="SELECT id, d..." />
-                <marker date="1396692014015" expanded="true" signature="1715:1784" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="1715:1785" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="2081:2193" placeholder="SELECT id, e..user..." />
-                <marker date="1396692014015" expanded="true" signature="3043:3130" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="3043:3131" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="3768:3847" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="3768:3848" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="3939:4020" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="4600:4688" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="5061:5150" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="5524:5613" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="6004:6103" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="6363:6414" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="6839:6997" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="6839:6998" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="7065:7218" placeholder="UPDATE threa..." />
-                <marker date="1396692014015" expanded="true" signature="7427:7478" placeholder="SELECT * FRO..thread..." />
-                <marker date="1396692014015" expanded="true" signature="7731:7806" placeholder="SELECT * FRO..subscription..." />
-                <marker date="1396692014015" expanded="true" signature="7992:8099" placeholder="INSERT INTO ..." />
-                <marker date="1396692014015" expanded="true" signature="7992:8062" placeholder="INSERT INTO ..." />
-                <marker date="1396692014015" expanded="true" signature="7992:8062" placeholder="INSERT INTO ..." />
-                <marker date="1396692014015" expanded="true" signature="8141:8241" placeholder="UPDATE subsc..." />
-                <marker date="1396692014015" expanded="true" signature="8141:8265" placeholder="UPDATE subsc..." />
-                <marker date="1396692014015" expanded="true" signature="8147:8188" placeholder="INSERT INTO ..." />
-                <marker date="1396692014015" expanded="true" signature="8673:8748" placeholder="SELECT * FRO..subscription..." />
-                <marker date="1396692014015" expanded="true" signature="8931:9055" placeholder="UPDATE subsc..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="followerService.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/followerService.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="42" selection-start="78" selection-end="80" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="1071">
-              <folding>
-                <marker date="1396452131523" expanded="true" signature="200:252" placeholder="SELECT * FRO..user..." />
+                <element signature="e#0#37#0" expanded="true" />
+                <marker date="1396713983854" expanded="true" signature="614:812" placeholder="INSERT INTO ..." />
+                <marker date="1396713983854" expanded="true" signature="1172:1333" placeholder="SELECT id, d..." />
+                <marker date="1396713983854" expanded="true" signature="1735:1804" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396713983854" expanded="true" signature="1735:1805" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396713983854" expanded="true" signature="2101:2213" placeholder="SELECT id, e..user..." />
+                <marker date="1396713983854" expanded="true" signature="3084:3171" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="3084:3172" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="3809:3888" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396713983854" expanded="true" signature="3809:3889" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396713983854" expanded="true" signature="3980:4061" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396713983854" expanded="true" signature="4641:4729" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="5102:5191" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="5565:5654" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="6045:6144" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="6404:6455" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396713983854" expanded="true" signature="6880:7038" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="6880:7039" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="7106:7259" placeholder="UPDATE threa..." />
+                <marker date="1396713983854" expanded="true" signature="7634:7709" placeholder="SELECT * FRO..subscription..." />
+                <marker date="1396713983854" expanded="true" signature="7895:8002" placeholder="INSERT INTO ..." />
+                <marker date="1396713983854" expanded="true" signature="7895:7965" placeholder="INSERT INTO ..." />
+                <marker date="1396713983854" expanded="true" signature="7895:7965" placeholder="INSERT INTO ..." />
+                <marker date="1396713983854" expanded="true" signature="8044:8144" placeholder="UPDATE subsc..." />
+                <marker date="1396713983854" expanded="true" signature="8044:8168" placeholder="UPDATE subsc..." />
+                <marker date="1396713983854" expanded="true" signature="8050:8091" placeholder="INSERT INTO ..." />
+                <marker date="1396713983854" expanded="true" signature="8576:8651" placeholder="SELECT * FRO..subscription..." />
+                <marker date="1396713983854" expanded="true" signature="8834:8958" placeholder="UPDATE subsc..." />
+                <marker date="1396713983854" expanded="true" signature="9402:9456" placeholder="SELECT * FRO..post..." />
               </folding>
             </state>
           </provider>
@@ -124,37 +80,86 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forum.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
+      <file leaf-file-name="user.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="7" selection-start="917" selection-end="920" vertical-scroll-proportion="-3.8076923" vertical-offset="445" max-vertical-offset="1258">
+            <state line="55" column="98" selection-start="1623" selection-end="1880" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="3859">
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-                <marker date="1396690045479" expanded="true" signature="482:582" placeholder="INSERT INTO ..." />
-                <marker date="1396690045479" expanded="true" signature="728:805" placeholder="SELECT * FRO..forum..." />
-                <marker date="1396690045479" expanded="true" signature="1097:1174" placeholder="SELECT * FRO..forum..." />
-                <marker date="1396690045479" expanded="true" signature="1418:1523" placeholder="SELECT id, e..user..." />
-                <marker date="1396690045479" expanded="true" signature="1418:1524" placeholder="SELECT id, e..user..." />
+                <marker date="1396712520312" expanded="true" signature="525:650" placeholder="INSERT INTO ..." />
+                <marker date="1396712520312" expanded="true" signature="986:1101" placeholder="SELECT about..user..." />
+                <marker date="1396712520312" expanded="true" signature="1456:1552" placeholder="SELECT id, a..user..." />
+                <marker date="1396712520312" expanded="true" signature="2793:2871" placeholder="SELECT * FRO..followers..." />
+                <marker date="1396712520312" expanded="true" signature="3063:3130" placeholder="INSERT INTO ..." />
+                <marker date="1396712520312" expanded="true" signature="3215:3341" placeholder="UPDATE follo..." />
+                <marker date="1396712520312" expanded="true" signature="3769:3847" placeholder="SELECT * FRO..followers..." />
+                <marker date="1396712520312" expanded="true" signature="4045:4171" placeholder="UPDATE follo..." />
+                <marker date="1396712520312" expanded="true" signature="4645:4743" placeholder="UPDATE user ..." />
+                <marker date="1396712520312" expanded="true" signature="5187:5239" placeholder="SELECT * FRO..post..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
+      <file leaf-file-name="forum.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="0" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.0" vertical-offset="1767" max-vertical-offset="3179">
+            <state line="192" column="22" selection-start="5906" selection-end="5906" vertical-scroll-proportion="0.2654321" vertical-offset="3178" max-vertical-offset="3502">
               <folding>
-                <marker date="1396691750914" expanded="true" signature="460:585" placeholder="INSERT INTO ..." />
-                <marker date="1396691750914" expanded="true" signature="921:1036" placeholder="SELECT about..user..." />
-                <marker date="1396691750914" expanded="true" signature="1376:1472" placeholder="SELECT id, a..user..." />
-                <marker date="1396691750914" expanded="true" signature="2692:2770" placeholder="SELECT * FRO..followers..." />
-                <marker date="1396691750914" expanded="true" signature="2962:3029" placeholder="INSERT INTO ..." />
-                <marker date="1396691750914" expanded="true" signature="3114:3240" placeholder="UPDATE follo..." />
-                <marker date="1396691750914" expanded="true" signature="3668:3746" placeholder="SELECT * FRO..followers..." />
-                <marker date="1396691750914" expanded="true" signature="3944:4070" placeholder="UPDATE follo..." />
-                <marker date="1396691750914" expanded="true" signature="4544:4642" placeholder="UPDATE user ..." />
+                <element signature="e#0#37#0" expanded="true" />
+                <marker date="1396716780369" expanded="true" signature="482:582" placeholder="INSERT INTO ..." />
+                <marker date="1396716780369" expanded="true" signature="728:805" placeholder="SELECT * FRO..forum..." />
+                <marker date="1396716780369" expanded="true" signature="1112:1189" placeholder="SELECT * FRO..forum..." />
+                <marker date="1396716780369" expanded="true" signature="1433:1538" placeholder="SELECT id, e..user..." />
+                <marker date="1396716780369" expanded="true" signature="1433:1539" placeholder="SELECT id, e..user..." />
+                <marker date="1396716780369" expanded="true" signature="2300:2352" placeholder="SELECT * FRO..post..." />
+                <marker date="1396716780369" expanded="true" signature="2300:2395" placeholder="SELECT * FRO..post..." />
+                <marker date="1396716780369" expanded="true" signature="2356:2392" placeholder="SELECT id FR..thread..." />
+                <marker date="1396716780369" expanded="true" signature="2356:2391" placeholder="SELECT id FR..thread..." />
+                <marker date="1396716780369" expanded="true" signature="3999:4056" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396716780369" expanded="true" signature="3999:4054" placeholder="SELECT * FRO..thread..." />
+                <marker date="1396716780369" expanded="true" signature="5298:5472" placeholder="SELECT * FRO..user..." />
+                <marker date="1396716780369" expanded="true" signature="5373:5471" placeholder="SELECT user ..post..." />
+                <marker date="1396716780369" expanded="true" signature="5380:5472" placeholder="SELECT user ..post..." />
+                <marker date="1396716780369" expanded="true" signature="5380:5408" placeholder="SELECT * FRO..user..." />
+                <marker date="1396716780369" expanded="true" signature="5380:5557" placeholder="SELECT * FRO..user..." />
+                <marker date="1396716780369" expanded="true" signature="5380:5472" placeholder="SELECT email..user..." />
+                <marker date="1396716780369" expanded="true" signature="5380:5408" placeholder="SELECT user ..post..." />
+                <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+                <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+                <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+                <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+                <marker date="1396716780369" expanded="true" signature="5432:5467" placeholder="SELECT id fr..thread..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="query_executor.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/query_executor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="0" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0" vertical-offset="232" max-vertical-offset="612">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="followerService.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/followerService.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="56" column="0" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.0" vertical-offset="747" max-vertical-offset="1071">
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connections.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/MySQLdb/connections.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="253" column="0" selection-start="7965" selection-end="7965" vertical-scroll-proportion="0.0" vertical-offset="4108" max-vertical-offset="5984">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,7 +167,7 @@
       <file leaf-file-name="subscriptionService.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/subscriptionService.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="2" selection-start="1" selection-end="3" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="340">
+            <state line="8" column="22" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
               <folding>
                 <marker date="1396541360835" expanded="true" signature="76:182" placeholder="SELECT threa..subscription..." />
               </folding>
@@ -200,10 +205,10 @@
         <option value="$PROJECT_DIR$/abashin_api_app/helpers/subscriptionService.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/views.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/dbService.py" />
-        <option value="$PROJECT_DIR$/abashin_api_app/entities/forum.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/entities/post.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/entities/user.py" />
         <option value="$PROJECT_DIR$/abashin_api_app/entities/thread.py" />
-        <option value="$PROJECT_DIR$/abashin_api_app/entities/post.py" />
+        <option value="$PROJECT_DIR$/abashin_api_app/entities/forum.py" />
       </list>
     </option>
   </component>
@@ -601,7 +606,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23338735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23252033" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -635,15 +640,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="33" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/abashin_api_app/entities/post.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="37" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="119" />
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Python27/Lib/SocketServer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="592" column="0" selection-start="19152" selection-end="19152" vertical-scroll-proportion="0.0" vertical-offset="10064" max-vertical-offset="12529" />
@@ -678,15 +685,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="40" selection-start="375" selection-end="375" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="442">
           <folding>
-            <marker date="1396691750914" expanded="true" signature="460:585" placeholder="INSERT INTO ..." />
-            <marker date="1396691750914" expanded="true" signature="921:1036" placeholder="SELECT about..user..." />
-            <marker date="1396691750914" expanded="true" signature="1376:1472" placeholder="SELECT id, a..user..." />
-            <marker date="1396691750914" expanded="true" signature="2692:2770" placeholder="SELECT * FRO..followers..." />
-            <marker date="1396691750914" expanded="true" signature="2962:3029" placeholder="INSERT INTO ..." />
-            <marker date="1396691750914" expanded="true" signature="3114:3240" placeholder="UPDATE follo..." />
-            <marker date="1396691750914" expanded="true" signature="3668:3746" placeholder="SELECT * FRO..followers..." />
-            <marker date="1396691750914" expanded="true" signature="3944:4070" placeholder="UPDATE follo..." />
-            <marker date="1396691750914" expanded="true" signature="4544:4642" placeholder="UPDATE user ..." />
+            <element signature="e#0#37#0" expanded="true" />
+            <marker date="1396712520312" expanded="true" signature="525:650" placeholder="INSERT INTO ..." />
+            <marker date="1396712520312" expanded="true" signature="986:1101" placeholder="SELECT about..user..." />
+            <marker date="1396712520312" expanded="true" signature="1456:1552" placeholder="SELECT id, a..user..." />
+            <marker date="1396712520312" expanded="true" signature="2793:2871" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396712520312" expanded="true" signature="3063:3130" placeholder="INSERT INTO ..." />
+            <marker date="1396712520312" expanded="true" signature="3215:3341" placeholder="UPDATE follo..." />
+            <marker date="1396712520312" expanded="true" signature="3769:3847" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396712520312" expanded="true" signature="4045:4171" placeholder="UPDATE follo..." />
+            <marker date="1396712520312" expanded="true" signature="4645:4743" placeholder="UPDATE user ..." />
+            <marker date="1396712520312" expanded="true" signature="5187:5239" placeholder="SELECT * FRO..post..." />
           </folding>
         </state>
       </provider>
@@ -840,13 +849,6 @@
         <state line="13" column="40" selection-start="271" selection-end="271" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340" />
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/views/decorators/csrf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="2044" selection-end="2044" vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="1071">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="113" column="0" selection-start="4537" selection-end="4537" vertical-scroll-proportion="0.0" vertical-offset="574" max-vertical-offset="4777">
@@ -859,47 +861,10 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="71.4" vertical-offset="1785" max-vertical-offset="3349" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/services/paramChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="39" selection-start="208" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/query_executor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="612" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/abashin_api_app/dbService.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="13" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/followerService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="42" selection-start="78" selection-end="80" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="1071">
-          <folding>
-            <marker date="1396452131523" expanded="true" signature="200:252" placeholder="SELECT * FRO..user..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/subscriptionService.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="2" selection-start="1" selection-end="3" vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="340">
-          <folding>
-            <marker date="1396541360835" expanded="true" signature="76:182" placeholder="SELECT threa..subscription..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -910,83 +875,168 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="7" selection-start="917" selection-end="920" vertical-scroll-proportion="-3.8076923" vertical-offset="445" max-vertical-offset="1258">
+        <state line="13" column="0" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/django/views/decorators/csrf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="2044" selection-end="2044" vertical-scroll-proportion="0.0" vertical-offset="687" max-vertical-offset="1071">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/post.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="0" selection-start="5272" selection-end="5272" vertical-scroll-proportion="1.9745331" vertical-offset="2186" max-vertical-offset="3553">
+          <folding>
+            <element signature="e#1#38#0" expanded="false" />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT id, d..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT id, d..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..post..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..post..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..post..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..post..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..post..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="UPDATE post ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="UPDATE post ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="UPDATE post ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="UPDATE post ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="UPDATE post ..." />
+            <marker date="1396711706660" expanded="true" signature="-1:-1" placeholder="UPDATE post ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/services/paramChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="39" selection-start="208" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="323">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/thread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="4" selection-start="1880" selection-end="1977" vertical-scroll-proportion="0.0" vertical-offset="839" max-vertical-offset="6681">
           <folding>
             <element signature="e#0#37#0" expanded="true" />
-            <marker date="1396690045479" expanded="true" signature="482:582" placeholder="INSERT INTO ..." />
-            <marker date="1396690045479" expanded="true" signature="728:805" placeholder="SELECT * FRO..forum..." />
-            <marker date="1396690045479" expanded="true" signature="1097:1174" placeholder="SELECT * FRO..forum..." />
-            <marker date="1396690045479" expanded="true" signature="1418:1523" placeholder="SELECT id, e..user..." />
-            <marker date="1396690045479" expanded="true" signature="1418:1524" placeholder="SELECT id, e..user..." />
+            <marker date="1396713983854" expanded="true" signature="614:812" placeholder="INSERT INTO ..." />
+            <marker date="1396713983854" expanded="true" signature="1172:1333" placeholder="SELECT id, d..." />
+            <marker date="1396713983854" expanded="true" signature="1735:1804" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396713983854" expanded="true" signature="1735:1805" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396713983854" expanded="true" signature="2101:2213" placeholder="SELECT id, e..user..." />
+            <marker date="1396713983854" expanded="true" signature="3084:3171" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="3084:3172" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="3809:3888" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396713983854" expanded="true" signature="3809:3889" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396713983854" expanded="true" signature="3980:4061" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396713983854" expanded="true" signature="4641:4729" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="5102:5191" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="5565:5654" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="6045:6144" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="6404:6455" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396713983854" expanded="true" signature="6880:7038" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="6880:7039" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="7106:7259" placeholder="UPDATE threa..." />
+            <marker date="1396713983854" expanded="true" signature="7634:7709" placeholder="SELECT * FRO..subscription..." />
+            <marker date="1396713983854" expanded="true" signature="7895:8002" placeholder="INSERT INTO ..." />
+            <marker date="1396713983854" expanded="true" signature="7895:7965" placeholder="INSERT INTO ..." />
+            <marker date="1396713983854" expanded="true" signature="7895:7965" placeholder="INSERT INTO ..." />
+            <marker date="1396713983854" expanded="true" signature="8044:8144" placeholder="UPDATE subsc..." />
+            <marker date="1396713983854" expanded="true" signature="8044:8168" placeholder="UPDATE subsc..." />
+            <marker date="1396713983854" expanded="true" signature="8050:8091" placeholder="INSERT INTO ..." />
+            <marker date="1396713983854" expanded="true" signature="8576:8651" placeholder="SELECT * FRO..subscription..." />
+            <marker date="1396713983854" expanded="true" signature="8834:8958" placeholder="UPDATE subsc..." />
+            <marker date="1396713983854" expanded="true" signature="9402:9456" placeholder="SELECT * FRO..post..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="0" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.0" vertical-offset="1767" max-vertical-offset="3179">
+        <state line="55" column="98" selection-start="1623" selection-end="1880" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="3859">
           <folding>
-            <marker date="1396691750914" expanded="true" signature="460:585" placeholder="INSERT INTO ..." />
-            <marker date="1396691750914" expanded="true" signature="921:1036" placeholder="SELECT about..user..." />
-            <marker date="1396691750914" expanded="true" signature="1376:1472" placeholder="SELECT id, a..user..." />
-            <marker date="1396691750914" expanded="true" signature="2692:2770" placeholder="SELECT * FRO..followers..." />
-            <marker date="1396691750914" expanded="true" signature="2962:3029" placeholder="INSERT INTO ..." />
-            <marker date="1396691750914" expanded="true" signature="3114:3240" placeholder="UPDATE follo..." />
-            <marker date="1396691750914" expanded="true" signature="3668:3746" placeholder="SELECT * FRO..followers..." />
-            <marker date="1396691750914" expanded="true" signature="3944:4070" placeholder="UPDATE follo..." />
-            <marker date="1396691750914" expanded="true" signature="4544:4642" placeholder="UPDATE user ..." />
+            <element signature="e#0#37#0" expanded="true" />
+            <marker date="1396712520312" expanded="true" signature="525:650" placeholder="INSERT INTO ..." />
+            <marker date="1396712520312" expanded="true" signature="986:1101" placeholder="SELECT about..user..." />
+            <marker date="1396712520312" expanded="true" signature="1456:1552" placeholder="SELECT id, a..user..." />
+            <marker date="1396712520312" expanded="true" signature="2793:2871" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396712520312" expanded="true" signature="3063:3130" placeholder="INSERT INTO ..." />
+            <marker date="1396712520312" expanded="true" signature="3215:3341" placeholder="UPDATE follo..." />
+            <marker date="1396712520312" expanded="true" signature="3769:3847" placeholder="SELECT * FRO..followers..." />
+            <marker date="1396712520312" expanded="true" signature="4045:4171" placeholder="UPDATE follo..." />
+            <marker date="1396712520312" expanded="true" signature="4645:4743" placeholder="UPDATE user ..." />
+            <marker date="1396712520312" expanded="true" signature="5187:5239" placeholder="SELECT * FRO..post..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/thread.py">
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/subscriptionService.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="39" selection-start="1947" selection-end="1947" vertical-scroll-proportion="3.3846154" vertical-offset="989" max-vertical-offset="6035">
+        <state line="8" column="22" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
           <folding>
-            <marker date="1396692014015" expanded="true" signature="656:854" placeholder="INSERT INTO ..." />
-            <marker date="1396692014015" expanded="true" signature="1214:1375" placeholder="SELECT id, d..." />
-            <marker date="1396692014015" expanded="true" signature="1715:1784" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="1715:1785" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="2081:2193" placeholder="SELECT id, e..user..." />
-            <marker date="1396692014015" expanded="true" signature="3043:3130" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="3043:3131" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="3768:3847" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="3768:3848" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="3939:4020" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="4600:4688" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="5061:5150" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="5524:5613" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="6004:6103" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="6363:6414" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="6839:6997" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="6839:6998" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="7065:7218" placeholder="UPDATE threa..." />
-            <marker date="1396692014015" expanded="true" signature="7427:7478" placeholder="SELECT * FRO..thread..." />
-            <marker date="1396692014015" expanded="true" signature="7731:7806" placeholder="SELECT * FRO..subscription..." />
-            <marker date="1396692014015" expanded="true" signature="7992:8099" placeholder="INSERT INTO ..." />
-            <marker date="1396692014015" expanded="true" signature="7992:8062" placeholder="INSERT INTO ..." />
-            <marker date="1396692014015" expanded="true" signature="7992:8062" placeholder="INSERT INTO ..." />
-            <marker date="1396692014015" expanded="true" signature="8141:8241" placeholder="UPDATE subsc..." />
-            <marker date="1396692014015" expanded="true" signature="8141:8265" placeholder="UPDATE subsc..." />
-            <marker date="1396692014015" expanded="true" signature="8147:8188" placeholder="INSERT INTO ..." />
-            <marker date="1396692014015" expanded="true" signature="8673:8748" placeholder="SELECT * FRO..subscription..." />
-            <marker date="1396692014015" expanded="true" signature="8931:9055" placeholder="UPDATE subsc..." />
+            <marker date="1396541360835" expanded="true" signature="76:182" placeholder="SELECT threa..subscription..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/post.py">
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/query_executor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="24" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.68209875" vertical-offset="255" max-vertical-offset="969">
+        <state line="20" column="0" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0" vertical-offset="232" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/Python27/Lib/site-packages/MySQLdb/connections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="253" column="0" selection-start="7965" selection-end="7965" vertical-scroll-proportion="0.0" vertical-offset="4108" max-vertical-offset="5984">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/helpers/followerService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.0" vertical-offset="747" max-vertical-offset="1071">
           <folding>
-            <element signature="e#1#38#0" expanded="true" />
-            <marker date="1396692941394" expanded="true" signature="664:901" placeholder="INSERT INTO ..." />
-            <marker date="1396692941394" expanded="true" signature="664:888" placeholder="INSERT INTO ..." />
-            <marker date="1396692941394" expanded="true" signature="664:888" placeholder="INSERT INTO ..." />
-            <marker date="1396692941394" expanded="true" signature="1307:1355" placeholder="SELECT * FRO..post..." />
-            <marker date="1396692941394" expanded="true" signature="1307:1356" placeholder="SELECT * FRO..post..." />
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/abashin_api_app/entities/forum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="192" column="22" selection-start="5906" selection-end="5906" vertical-scroll-proportion="0.2654321" vertical-offset="3178" max-vertical-offset="3502">
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <marker date="1396716780369" expanded="true" signature="482:582" placeholder="INSERT INTO ..." />
+            <marker date="1396716780369" expanded="true" signature="728:805" placeholder="SELECT * FRO..forum..." />
+            <marker date="1396716780369" expanded="true" signature="1112:1189" placeholder="SELECT * FRO..forum..." />
+            <marker date="1396716780369" expanded="true" signature="1433:1538" placeholder="SELECT id, e..user..." />
+            <marker date="1396716780369" expanded="true" signature="1433:1539" placeholder="SELECT id, e..user..." />
+            <marker date="1396716780369" expanded="true" signature="2300:2352" placeholder="SELECT * FRO..post..." />
+            <marker date="1396716780369" expanded="true" signature="2300:2395" placeholder="SELECT * FRO..post..." />
+            <marker date="1396716780369" expanded="true" signature="2356:2392" placeholder="SELECT id FR..thread..." />
+            <marker date="1396716780369" expanded="true" signature="2356:2391" placeholder="SELECT id FR..thread..." />
+            <marker date="1396716780369" expanded="true" signature="3999:4056" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396716780369" expanded="true" signature="3999:4054" placeholder="SELECT * FRO..thread..." />
+            <marker date="1396716780369" expanded="true" signature="5298:5472" placeholder="SELECT * FRO..user..." />
+            <marker date="1396716780369" expanded="true" signature="5373:5471" placeholder="SELECT user ..post..." />
+            <marker date="1396716780369" expanded="true" signature="5380:5472" placeholder="SELECT user ..post..." />
+            <marker date="1396716780369" expanded="true" signature="5380:5408" placeholder="SELECT * FRO..user..." />
+            <marker date="1396716780369" expanded="true" signature="5380:5557" placeholder="SELECT * FRO..user..." />
+            <marker date="1396716780369" expanded="true" signature="5380:5472" placeholder="SELECT email..user..." />
+            <marker date="1396716780369" expanded="true" signature="5380:5408" placeholder="SELECT user ..post..." />
+            <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+            <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+            <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+            <marker date="1396716780369" expanded="true" signature="5432:5468" placeholder="SELECT id fr..thread..." />
+            <marker date="1396716780369" expanded="true" signature="5432:5467" placeholder="SELECT id fr..thread..." />
           </folding>
         </state>
       </provider>

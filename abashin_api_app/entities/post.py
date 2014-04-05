@@ -3,30 +3,49 @@ from abashin_api_app import dbService
 from abashin_api_app.entities import user, thread, forum
 from abashin_api_app.services.paramChecker import check_required_params, check_optional_param
 
+
 def create(**data):
 
     check_required_params(data, ['date', 'thread', 'message', 'user', 'forum'])
     check_optional_param(data, 'parent', None)
     check_optional_param(data, 'isApproved', False)
-    check_optional_param(data, 'isHighlited', False)
+    check_optional_param(data, 'isHighlighted', False)
     check_optional_param(data, 'isEdited', False)
     check_optional_param(data, 'isSpam', False)
     check_optional_param(data, 'isDeleted', False)
 
     db = dbService.connect()
     cur = db.cursor()
-    cur.execute("""INSERT INTO post (date, thread, message, user, forum, parent
+    try:
+        cur.execute("""INSERT INTO post (date, thread, message, user, forum, parent,
                                      isApproved, isHighlighted, isEdited, isSpam, isDeleted)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-        (data['date'], data['thread'], data['message'], data['user'], data['forum'],
-         data['parent'], int(data['isApproved']), int(data['isHighlighted']), int(data['isEdited']),
-         int(data['isSpam']), int(data['isDeleted']),))
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                    (data['date'], data['thread'], data['message'], data['user'], data['forum'],
+                    data['parent'], int(data['isApproved']), int(data['isHighlighted']), int(data['isEdited']),
+                    int(data['isSpam']), int(data['isDeleted']),))
+        post = cur.lastrowid
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        cur.close()
+        db.close()
+        raise e
+
     cur.close()
 
-    #TODO: return post
+    cur = db.cursor()
+    cur.execute("""SELECT id, date, forum, isApproved, isDeleted, isEdited,
+                   isHighlighted, isSpam, message, thread, user
+                   FROM post
+                   WHERE id = %s""", (post,))
+    post = cur.fetchone()
+    cur.close()
+    db.close()
+
+    return post
 
 
-def details(db=dbService.connect(), **data):
+def details(db=dbService.connect(), close_db=True, **data):
 
     check_required_params(data, ['post'])
 
@@ -38,14 +57,147 @@ def details(db=dbService.connect(), **data):
 
     if 'related' in data:
         if 'user' in data['related']:
-            post['user'] = user.details(db, **post)
+            post['user'] = user.details(db, False, **post)
         if 'thread' in data['related']:
-            post['thread'] = thread.details(db, **post)
+            post['thread'] = thread.details(db, False, **post)
         if 'forum' in data['related']:
-            post['forum'] = forum.details(db, **post)
+            short_name = {'short_name': post['forum']}
+            post['forum'] = forum.details(db, False, **short_name)
 
-    db.close()
+    if close_db:
+        db.close()
 
     return post
 
 
+def list(**data):
+
+    if 'thread' not in data and 'forum' not in data:
+        raise Exception("thread or forum is required")
+    if 'thread' in data and 'forum' in data:
+        raise Exception("choose either thread or forum")
+
+    db = dbService.connect()
+    cur = db.cursor()
+    posts = []
+    if 'thread' in data:
+        cur.execute("""SELECT * FROM post
+                       WHERE thread = %s""", (data['thread'],))
+        posts = cur.fetchall()
+    elif 'forum' in data:
+        cur.execute("""SELECT * FROM post
+                       WHERE forum = %s""", (data['forum'],))
+        posts = cur.fetchall()
+    cur.close()
+    db.close()
+
+    return posts
+
+
+def remove(**data):
+
+    check_required_params(data, ['post'])
+
+    db = dbService.connect()
+
+    cur = db.cursor()
+    try:
+        cur.execute("""UPDATE post
+                       SET isDeleted = 1
+                       WHERE id = %s""", (data['post'],))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        cur.close()
+        db.close()
+        raise e
+
+    cur.close()
+    db.close()
+
+    return {'post': data['post']}
+
+
+def restore(**data):
+
+    check_required_params(data, ['post'])
+
+    db = dbService.connect()
+
+    cur = db.cursor()
+    try:
+        cur.execute("""UPDATE post
+                       SET isDeleted = 0
+                       WHERE id = %s""", (data['post'],))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        cur.close()
+        db.close()
+        raise e
+
+    cur.close()
+    db.close()
+
+    return {'post': data['post']}
+
+
+def update(**data):
+
+    check_required_params(data, ['post', 'message'])
+
+    db = dbService.connect()
+
+    cur = db.cursor()
+    try:
+        cur.execute("""UPDATE post
+                       SET message = %s
+                       WHERE id = %s""", (data['message'], data['post'],))
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        cur.close()
+        db.close()
+        raise e
+
+    cur.close()
+
+    post = details(db, True, **data)
+
+    return post
+
+
+def vote(**data):
+
+    check_required_params(data, ['post', 'vote'])
+
+    data['vote'] = int(data['vote'])
+
+    if data['vote'] != -1 and data['vote'] != 1:
+        raise Exception("Illegal vote.")
+
+    db = dbService.connect()
+    cur = db.cursor()
+    try:
+        if data['vote'] == -1:
+            cur.execute("""UPDATE post
+                           SET dislikes = dislikes + 1,
+                               points = points - 1
+                           WHERE id = %s""", (data['post'],))
+        else:
+            cur.execute("""UPDATE post
+                           SET likes = likes + 1,
+                               points = points + 1
+                           WHERE id = %s""", (data['post'],))
+        db.commit()
+    except Exception as e:
+        cur.close()
+        db.rollback()
+        db.close()
+        raise e
+
+    cur.close()
+
+    post = details(db, True, **data)
+
+    return post

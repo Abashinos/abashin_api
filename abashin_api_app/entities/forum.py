@@ -30,7 +30,7 @@ def create(**data):
     return forum
 
 
-def details(db=dbService.connect(), **data):
+def details(db=dbService.connect(), close_db=True, **data):
 
     if 'short_name' not in data:
         raise Exception("parameter 'short_name' is required")
@@ -61,8 +61,140 @@ def details(db=dbService.connect(), **data):
 
         forum['user'] = user_data
 
-    db.close()
+    if close_db:
+        db.close()
 
     return forum
 
 
+def listPosts(**data):
+    from abashin_api_app.entities import thread, user
+
+    check_required_params(data, ['forum'])
+    check_optional_param(data, 'order', 'desc')
+
+    query = StringBuilder()
+    params = ()
+    query.append("""SELECT * FROM post
+                    WHERE thread in (SELECT id FROM thread WHERE forum = %s)""")
+    params += (data['forum'],)
+
+    if 'since' in data:
+        query.append(""" AND date >= %s""")
+        params += (data['since'],)
+
+    query.append(""" ORDER BY date %s""" % data['order'])
+
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    cur.execute(str(query), params)
+    posts = cur.fetchall()
+    cur.close()
+
+    for post in posts:
+        post['isApproved'] = bool(post['isApproved'])
+        post['isDeleted'] = bool(post['isDeleted'])
+        post['isEdited'] = bool(post['isEdited'])
+        post['isHighlighted'] = bool(post['isHighlighted'])
+        post['isSpam'] = bool(post['isSpam'])
+        if 'related' in data:
+            if 'thread' in data['related']:
+                thread_data = {'thread': post['thread']}
+                thread_data = thread.details(db, False, **thread_data)
+                post['thread'] = thread_data
+            if 'user' in data['related']:
+                user_data = {'user': post['user']}
+                user_data = user.details(db, False, **user_data)
+                post['user'] = user_data
+            if 'forum' in data['related']:
+                forum_data = {'short_name': post['forum']}
+                forum_data = details(db, False, **forum_data)
+                post['forum'] = forum_data
+
+    return posts
+
+
+def listThreads(**data):
+    from abashin_api_app.entities import thread, user
+
+    check_required_params(data, ['forum'])
+    check_optional_param(data, 'order', 'desc')
+
+    query = StringBuilder()
+    params = ()
+    query.append("""SELECT * FROM thread
+                    WHERE forum = %s""")
+    params += (data['forum'],)
+
+    if 'since' in data:
+        query.append(""" AND date >= %s""")
+        params += (data['since'],)
+
+    query.append(""" ORDER BY date %s""" % data['order'])
+
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    cur.execute(str(query), params)
+    threads = cur.fetchall()
+    cur.close()
+
+    for thread in threads:
+        thread['isDeleted'] = bool(thread['isDeleted'])
+        thread['isClosed'] = bool(thread['isClosed'])
+
+        if 'related' in data:
+            if 'user' in data['related']:
+                user_data = {'user': thread['user']}
+                user_data = user.details(db, False, **user_data)
+                thread['user'] = user_data
+            if 'forum' in data['related']:
+                forum_data = {'short_name': thread['forum']}
+                forum_data = details(db, False, **forum_data)
+                thread['forum'] = forum_data
+
+    return threads
+
+
+def listUsers(**data):
+    from abashin_api_app.entities import user
+
+    check_required_params(data, ['forum'])
+    check_optional_param(data, 'order', 'desc')
+
+    query = StringBuilder()
+    params = ()
+    query.append("""SELECT * FROM user
+                    WHERE email in
+                    (SELECT user FROM post WHERE thread in
+                    (SELECT id from thread WHERE forum = %s))""")
+    params += (data['forum'],)
+
+    if 'since_id' in data:
+        query.append(""" AND id >= %s""")
+        params += (data['since_id'],)
+
+    query.append(""" ORDER BY id %s""" % data['order'])
+
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
+    db = dbService.connect()
+    cur = db.cursor()
+    cur.execute(str(query), params)
+    users = cur.fetchall()
+    cur.close()
+
+    for user in users:
+        del user['password']
+        user['subscriptions'] = listSubscriptions(user['email'], db)
+        user_data = {'user': user['email']}
+        user['followers'] = followerService.listFollowersOrFollowees(user_data, ['followers', 'short'], db)
+        user['following'] = followerService.listFollowersOrFollowees(user_data, ['followees', 'short'], db)
+        user['isAnonymous'] = bool(user['isAnonymous'])
+    return users
