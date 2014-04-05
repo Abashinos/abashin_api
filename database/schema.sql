@@ -23,13 +23,12 @@ CREATE TABLE IF NOT EXISTS `dbms`.`user` (
   `name` VARCHAR(100) NULL DEFAULT NULL,
   `about` VARCHAR(100) NULL DEFAULT NULL,
   `username` VARCHAR(50) NULL DEFAULT NULL,
-  `password` VARCHAR(100) NOT NULL,
   `isAnonymous` TINYINT(1) NOT NULL,
   PRIMARY KEY (`email`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 143
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -77,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `dbms`.`forum` (
     REFERENCES `dbms`.`user` (`email`)
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 105
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -100,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `dbms`.`thread` (
   `user` VARCHAR(200) NOT NULL DEFAULT '',
   `forum` VARCHAR(100) NOT NULL DEFAULT '',
   `posts` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  PRIMARY KEY (`user`, `forum`, `slug`),
+  PRIMARY KEY (`id`, `slug`, `user`, `forum`),
   UNIQUE INDEX `slug_UNIQUE` (`slug` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_thread_user1_idx` (`user` ASC),
@@ -115,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `dbms`.`thread` (
     REFERENCES `dbms`.`user` (`email`)
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 88
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -136,35 +135,36 @@ CREATE TABLE IF NOT EXISTS `dbms`.`post` (
   `points` INT(11) NOT NULL DEFAULT '0',
   `likes` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `dislikes` INT(10) UNSIGNED NOT NULL DEFAULT '0',
-  `parent` BIGINT(20) UNSIGNED NOT NULL,
+  `parent` BIGINT(20) UNSIGNED NULL DEFAULT NULL,
   `user` VARCHAR(200) NOT NULL,
-  `thread` VARCHAR(200) NOT NULL,
+  `thread` BIGINT(20) UNSIGNED NOT NULL,
   `forum` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`, `user`, `thread`, `forum`),
   INDEX `fk_post_user1_idx` (`user` ASC),
   INDEX `fk_post_thread1_idx` (`thread` ASC),
   INDEX `fk_post_post1_idx` (`parent` ASC),
   INDEX `fk_post_forum1_idx` (`forum` ASC),
-  CONSTRAINT `fk_post_post1`
-    FOREIGN KEY (`parent`)
-    REFERENCES `dbms`.`post` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_post_thread1`
     FOREIGN KEY (`thread`)
-    REFERENCES `dbms`.`thread` (`slug`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_post_user1`
-    FOREIGN KEY (`user`)
-    REFERENCES `dbms`.`user` (`email`)
+    REFERENCES `dbms`.`thread` (`id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_post_forum1`
     FOREIGN KEY (`forum`)
     REFERENCES `dbms`.`forum` (`short_name`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_post1`
+    FOREIGN KEY (`parent`)
+    REFERENCES `dbms`.`post` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_post_user1`
+    FOREIGN KEY (`user`)
+    REFERENCES `dbms`.`user` (`email`)
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 73
 DEFAULT CHARACTER SET = utf8;
 
 
