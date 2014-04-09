@@ -100,7 +100,6 @@ CREATE TABLE IF NOT EXISTS `dbms`.`thread` (
   `forum` VARCHAR(100) NOT NULL DEFAULT '',
   `posts` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`, `slug`, `user`, `forum`),
-  UNIQUE INDEX `slug_UNIQUE` (`slug` ASC),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_thread_user1_idx` (`user` ASC),
   INDEX `fk_thread_forum1_idx` (`forum` ASC),
