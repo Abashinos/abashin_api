@@ -1,6 +1,7 @@
 import json
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from abashin_api_app import dbService
 from abashin_api_app.services.DateTimeEncoder import DateTimeEncoder
 from query_executor import execute
 
@@ -17,4 +18,9 @@ def response_page(request, entity, method):
                         content_type='application/json')
 
 
+@csrf_exempt
+def clear_db(request):
 
+    dbService.clear()
+
+    return HttpResponse()
