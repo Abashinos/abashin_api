@@ -59,6 +59,9 @@ def details(db=0, close_db=True, **data):
     thread = cur.fetchone()
     cur.close()
 
+    if not thread or len(thread) == 0:
+        raise Exception("No thread found")
+
     thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
     thread['isDeleted'] = bool(thread['isDeleted'])
     thread['isClosed'] = bool(thread['isClosed'])

@@ -65,6 +65,10 @@ def details(db=0, close_db=True, **data):
                    WHERE id = %s""", (data['post'],))
     post = cur.fetchone()
     cur.close()
+
+    if not post or len(post) == 0:
+        raise Exception("No post found")
+
     post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
 
     if 'related' in data:
