@@ -2,16 +2,8 @@ from abashin_api_app import dbService
 from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.StringBuilder import *
 
+
 def listFollowersOrFollowees(data, mode, db=dbService.connect()):
-
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM user
-                   WHERE email = %s""", (data['user'],))
-    user = cur.fetchone()
-    cur.close()
-
-    if not user or len(user) == 0:
-        raise Exception('No such user found')
 
     query = StringBuilder()
     params = ()
@@ -27,12 +19,12 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
         query.append(""" (SELECT follower
                     FROM followers
                     WHERE followee = %s AND isFollowing = 1)""")
-        params += (user['email'],)
+        params += (data['user'],)
     else:
         query.append(""" (SELECT followee
                     FROM followers
                     WHERE follower = %s AND isFollowing = 1)""")
-        params += (user['email'],)
+        params += (data['user'],)
 
     if 'since_id' in data:
         query.append(""" AND id >= %s""")
