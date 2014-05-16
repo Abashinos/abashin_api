@@ -54,13 +54,12 @@ def details(db=0, close_db=True, **data):
     user = cur.fetchone()
     cur.close()
 
-    user['subscriptions'] = listSubscriptions(data['user'], db)
-    user['followers'] = followerService.listFollowersOrFollowees(data, ['followers', 'short'], db)
-    user['following'] = followerService.listFollowersOrFollowees(data, ['followees', 'short'], db)
-
     if not user or len(user) == 0:
         raise Exception("No user found")
 
+    user['subscriptions'] = listSubscriptions(data['user'], db)
+    user['followers'] = followerService.listFollowersOrFollowees(data, ['followers', 'short'], db)
+    user['following'] = followerService.listFollowersOrFollowees(data, ['followees', 'short'], db)
     user['isAnonymous'] = bool(user['isAnonymous'])
 
     if close_db:

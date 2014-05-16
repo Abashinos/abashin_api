@@ -46,6 +46,9 @@ def details(db=0, close_db=True, **data):
     forum = cur.fetchone()
     cur.close()
 
+    if not forum or len(forum) == 0:
+        raise Exception("No forum found")
+
     data['user'] = forum['user']
 
     if 'related' in data and len(data['related']) != 0 and data['related'] == 'user':
