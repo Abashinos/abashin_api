@@ -42,7 +42,7 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
         users = cur.fetchall()
         for user in users:
             user['subscriptions'] = listSubscriptions(user['email'], db)
-            temp_user = {'user' : user['email']}
+            temp_user = {'user': user['email']}
             user['followers'] = listFollowersOrFollowees(temp_user, ['followers', 'short'], db)
             user['following'] = listFollowersOrFollowees(temp_user, ['followees', 'short'], db)
     else:

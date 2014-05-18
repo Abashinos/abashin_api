@@ -1,6 +1,4 @@
 from abashin_api_app import dbService
-from abashin_api_app.helpers import followerService
-from abashin_api_app.helpers.subscriptionService import listSubscriptions
 from abashin_api_app.services.StringBuilder import StringBuilder
 from abashin_api_app.services.paramChecker import *
 
@@ -27,7 +25,6 @@ def create(**data):
     finally:
         cur.close()
         db.close()
-
 
     user = {
         'id': _id,
@@ -121,7 +118,6 @@ def listFollowers(**data):
     if 'limit' in data:
         query.append(""" LIMIT %s""" % data['limit'])
 
-
     db = dbService.connect()
     cur = db.cursor()
     cur.execute(str(query), params)
@@ -183,7 +179,6 @@ def listFollowing(**data):
 
     if 'limit' in data:
         query.append(""" LIMIT %s""" % data['limit'])
-
 
     db = dbService.connect()
     cur = db.cursor()

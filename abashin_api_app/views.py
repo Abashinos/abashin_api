@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from abashin_api_app import dbService
 from query_executor import execute
 
+
 @csrf_exempt
 def response_page(request, entity, method):
 
