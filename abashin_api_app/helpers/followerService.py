@@ -26,14 +26,15 @@ def listFollowersOrFollowees(data, mode, db=dbService.connect()):
                     WHERE follower = %s AND isFollowing = 1)""")
         params += (data['user'],)
 
-    if 'since_id' in data:
-        query.append(""" AND id >= %s""")
-        params += (data['since_id'],)
     if mode[1] == 'long':
+        if 'since_id' in data:
+            query.append(""" AND id >= %s""")
+            params += (data['since_id'],)
+
         query.append(""" ORDER BY name %s""" % data['order'])
 
-    if 'limit' in data:
-        query.append(""" LIMIT %s""" % data['limit'])
+        if 'limit' in data:
+            query.append(""" LIMIT %s""" % data['limit'])
 
     cur = db.cursor()
     cur.execute(str(query), params)

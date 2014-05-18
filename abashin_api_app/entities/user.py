@@ -17,25 +17,26 @@ def create(**data):
                        VALUES (%s, %s, %s, %s, %s)""",
                    (data['email'], data['username'], data['name'], data['about'],
                     int(data['isAnonymous']),))
+        _id = cur.lastrowid
+        cur.fetchall()
         db.commit()
+
     except Exception as e:
         db.rollback()
+        raise e
+    finally:
         cur.close()
         db.close()
-        raise e
 
-    cur.close()
 
-    cur = db.cursor()
-    cur.execute("""SELECT about, email, id, isAnonymous, name, username
-                   FROM user
-                   WHERE email = %s""",
-               (data['email'],))
-    user = cur.fetchone()
-
-    user['isAnonymous'] = bool(user['isAnonymous'])
-    cur.close()
-    db.close()
+    user = {
+        'id': _id,
+        'email': data['email'],
+        'username': data['username'],
+        'name': data['name'],
+        'about': data['about'],
+        'isAnonymous': data['isAnonymous']
+    }
 
     return user
 
@@ -49,17 +50,37 @@ def details(db=0, close_db=True, **data):
         db = dbService.connect()
 
     cur = db.cursor()
-    cur.execute("""SELECT *
-                   FROM user WHERE email = %s""", (data['user'],))
+    cur.execute("""SELECT id, username, name, about, email, isAnonymous,
+                   GROUP_CONCAT(DISTINCT thread ORDER BY thread separator ' ') AS subscriptions,
+                   GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
+                   GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
+                   FROM user LEFT JOIN subscription
+                   ON subscription.user = user.email AND isSubscribed = 1
+                   LEFT JOIN followers AS fr
+                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   LEFT JOIN followers AS fe
+                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   WHERE email = %s """, (data['user'],))
     user = cur.fetchone()
     cur.close()
 
     if not user or len(user) == 0:
         raise Exception("No user found")
 
-    user['subscriptions'] = listSubscriptions(data['user'], db)
-    user['followers'] = followerService.listFollowersOrFollowees(data, ['followers', 'short'], db)
-    user['following'] = followerService.listFollowersOrFollowees(data, ['followees', 'short'], db)
+    if not user['subscriptions']:
+        user['subscriptions'] = []
+    else:
+        user['subscriptions'] = [int(n) for n in user['subscriptions'].split()]
+
+    if not user['followers']:
+        user['followers'] = []
+    else:
+        user['followers'] = user['followers'].split()
+    if not user['following']:
+        user['following'] = []
+    else:
+        user['following'] = user['following'].split()
+
     user['isAnonymous'] = bool(user['isAnonymous'])
 
     if close_db:
@@ -103,9 +124,7 @@ def follow(**data):
     cur.execute("""SELECT * FROM followers
                    WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
     exists = cur.fetchone()
-    cur.close()
 
-    cur = db.cursor()
     try:
         if not exists or len(exists) == 0:
             cur.execute("""INSERT INTO followers
