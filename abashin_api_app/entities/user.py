@@ -95,9 +95,59 @@ def listFollowers(**data):
     if 'order' not in data:
         data['order'] = 'desc'
 
+    query = StringBuilder()
+    params = ()
+
+    query.append("""SELECT id, username, name, about, email, isAnonymous,
+                   GROUP_CONCAT(DISTINCT thread ORDER BY thread separator ' ') AS subscriptions,
+                   GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
+                   GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
+                   FROM user LEFT JOIN subscription
+                   ON subscription.user = user.email AND isSubscribed = 1
+                   LEFT JOIN followers AS fr
+                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   LEFT JOIN followers AS fe
+                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   WHERE email in (SELECT follower from followers
+                   WHERE followee = %s AND isFollowing = 1)""")
+    params += (data['user'],)
+
+    if 'since_id' in data:
+        query.append(""" AND id >= %s""")
+        params += (data['since_id'],)
+
+    query.append(""" ORDER BY name %s""" % data['order'])
+
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
+
     db = dbService.connect()
-    followers = followerService.listFollowersOrFollowees(data, ['followers', 'long'], db)
+    cur = db.cursor()
+    cur.execute(str(query), params)
+    followers = cur.fetchall()
+    cur.close()
     db.close()
+
+    for user in followers:
+        if user['email']:
+            if not user['subscriptions']:
+                user['subscriptions'] = []
+            else:
+                user['subscriptions'] = [int(n) for n in user['subscriptions'].split()]
+
+            if not user['followers']:
+                user['followers'] = []
+            else:
+                user['followers'] = user['followers'].split()
+            if not user['following']:
+                user['following'] = []
+            else:
+                user['following'] = user['following'].split()
+
+            user['isAnonymous'] = bool(user['isAnonymous'])
+        else:
+            followers = []
 
     return followers
 
@@ -108,9 +158,59 @@ def listFollowing(**data):
     if 'order' not in data:
         data['order'] = 'desc'
 
+    query = StringBuilder()
+    params = ()
+
+    query.append("""SELECT id, username, name, about, email, isAnonymous,
+                   GROUP_CONCAT(DISTINCT thread ORDER BY thread separator ' ') AS subscriptions,
+                   GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
+                   GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
+                   FROM user LEFT JOIN subscription
+                   ON subscription.user = user.email AND isSubscribed = 1
+                   LEFT JOIN followers AS fr
+                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   LEFT JOIN followers AS fe
+                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   WHERE email in (SELECT followee from followers
+                   WHERE follower = %s AND isFollowing = 1)""")
+    params += (data['user'],)
+
+    if 'since_id' in data:
+        query.append(""" AND id >= %s""")
+        params += (data['since_id'],)
+
+    query.append(""" ORDER BY name %s""" % data['order'])
+
+    if 'limit' in data:
+        query.append(""" LIMIT %s""" % data['limit'])
+
+
     db = dbService.connect()
-    followees = followerService.listFollowersOrFollowees(data, ['followees', 'long'], db)
+    cur = db.cursor()
+    cur.execute(str(query), params)
+    followees = cur.fetchall()
+    cur.close()
     db.close()
+
+    for user in followees:
+        if user['email']:
+            if not user['subscriptions']:
+                user['subscriptions'] = []
+            else:
+                user['subscriptions'] = [int(n) for n in user['subscriptions'].split()]
+
+            if not user['followers']:
+                user['followers'] = []
+            else:
+                user['followers'] = user['followers'].split()
+            if not user['following']:
+                user['following'] = []
+            else:
+                user['following'] = user['following'].split()
+
+            user['isAnonymous'] = bool(user['isAnonymous'])
+        else:
+            followees = []
 
     return followees
 
@@ -121,12 +221,12 @@ def follow(**data):
     db = dbService.connect()
     cur = db.cursor()
 
-    cur.execute("""SELECT * FROM followers
+    cur.execute("""SELECT 1 FROM followers
                    WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
     exists = cur.fetchone()
 
     try:
-        if not exists or len(exists) == 0:
+        if not exists or exists != 1:
             cur.execute("""INSERT INTO followers
                            VALUES (%s, %s, 1)""", (data['follower'], data['followee'],))
         else:
@@ -154,25 +254,18 @@ def unfollow(**data):
     db = dbService.connect()
     cur = db.cursor()
 
-    cur.execute("""SELECT * FROM followers
-                   WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
-    exists = cur.fetchone()
-    cur.close()
-
-
-    if exists and len(exists) != 0:
-        try:
-            cur = db.cursor()
-            cur.execute("""UPDATE followers
-                           SET isFollowing = 0
-                           WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
-            db.commit()
-        except Exception as e:
-            cur.close()
-            db.rollback()
-            db.close()
-            raise e
+    try:
+        cur.execute("""UPDATE followers
+                       SET isFollowing = 0
+                       WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
+        db.commit()
+    except Exception as e:
         cur.close()
+        db.rollback()
+        db.close()
+        raise e
+
+    cur.close()
 
     user = {'user': data['follower']}
     user = details(db, **user)
