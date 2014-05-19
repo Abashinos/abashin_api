@@ -52,11 +52,11 @@ def details(db=0, close_db=True, **data):
                    GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
                    GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
                    FROM user LEFT JOIN subscription
-                   ON subscription.user = user.email AND isSubscribed = 1
+                   ON subscription.user = user.email
                    LEFT JOIN followers AS fr
-                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   ON fr.followee = user.email
                    LEFT JOIN followers AS fe
-                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   ON fe.follower = user.email
                    WHERE email = %s """, (data['user'],))
     user = cur.fetchone()
     cur.close()
@@ -100,20 +100,20 @@ def listFollowers(**data):
                    GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
                    GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
                    FROM user LEFT JOIN subscription
-                   ON subscription.user = user.email AND isSubscribed = 1
+                   ON subscription.user = user.email
                    LEFT JOIN followers AS fr
-                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   ON fr.followee = user.email
                    LEFT JOIN followers AS fe
-                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   ON fe.follower = user.email
                    WHERE email in (SELECT follower from followers
-                   WHERE followee = %s AND isFollowing = 1)""")
+                   WHERE followee = %s) """)
     params += (data['user'],)
 
     if 'since_id' in data:
         query.append(""" AND id >= %s""")
         params += (data['since_id'],)
 
-    query.append(""" ORDER BY name %s""" % data['order'])
+    query.append("""GROUP BY email ORDER BY name %s""" % data['order'])
 
     if 'limit' in data:
         query.append(""" LIMIT %s""" % data['limit'])
@@ -162,20 +162,20 @@ def listFollowing(**data):
                    GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
                    GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
                    FROM user LEFT JOIN subscription
-                   ON subscription.user = user.email AND isSubscribed = 1
+                   ON subscription.user = user.email
                    LEFT JOIN followers AS fr
-                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   ON fr.followee = user.email
                    LEFT JOIN followers AS fe
-                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   ON fe.follower = user.email
                    WHERE email in (SELECT followee from followers
-                   WHERE follower = %s AND isFollowing = 1)""")
+                   WHERE follower = %s) """)
     params += (data['user'],)
 
     if 'since_id' in data:
         query.append(""" AND id >= %s""")
         params += (data['since_id'],)
 
-    query.append(""" ORDER BY name %s""" % data['order'])
+    query.append("""GROUP BY email ORDER BY name %s""" % data['order'])
 
     if 'limit' in data:
         query.append(""" LIMIT %s""" % data['limit'])
@@ -216,18 +216,9 @@ def follow(**data):
     db = dbService.connect()
     cur = db.cursor()
 
-    cur.execute("""SELECT 1 FROM followers
-                   WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
-    exists = cur.fetchone()
-
     try:
-        if not exists or exists != 1:
-            cur.execute("""INSERT INTO followers
-                           VALUES (%s, %s, 1)""", (data['follower'], data['followee'],))
-        else:
-            cur.execute("""UPDATE followers
-                           SET isFollowing = 1
-                           WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
+        cur.execute("""INSERT INTO followers
+                       VALUES (%s, %s)""", (data['follower'], data['followee'],))
         db.commit()
     except Exception as e:
         db.rollback()
@@ -250,8 +241,7 @@ def unfollow(**data):
     cur = db.cursor()
 
     try:
-        cur.execute("""UPDATE followers
-                       SET isFollowing = 0
+        cur.execute("""DELETE FROM followers
                        WHERE follower = %s AND followee = %s""", (data['follower'], data['followee'],))
         db.commit()
     except Exception as e:

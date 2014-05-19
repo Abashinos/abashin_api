@@ -113,7 +113,7 @@ def listPosts(**data):
 
 
 def listThreads(**data):
-    from abashin_api_app.entities import thread, user
+    from abashin_api_app.entities import user
 
     check_required_params(data, ['forum'])
     check_optional_param(data, 'order', 'desc')
@@ -171,20 +171,20 @@ def listUsers(**data):
                    GROUP_CONCAT(DISTINCT fr.follower ORDER BY fr.follower separator ' ') AS followers,
                    GROUP_CONCAT(DISTINCT fe.followee ORDER BY fe.followee separator ' ') AS following
                    FROM user LEFT JOIN subscription
-                   ON subscription.user = user.email AND isSubscribed = 1
+                   ON subscription.user = user.email
                    LEFT JOIN followers AS fr
-                   ON fr.followee = user.email AND fr.isFollowing = 1
+                   ON fr.followee = user.email
                    LEFT JOIN followers AS fe
-                   ON fe.follower = user.email AND fe.isFollowing = 1
+                   ON fe.follower = user.email
                    WHERE email in (SELECT user from post
-                   WHERE forum = %s)""")
+                   WHERE forum = %s) """)
     params += (data['forum'],)
 
     if 'since_id' in data:
         query.append(""" AND id >= %s""")
         params += (data['since_id'],)
 
-    query.append(""" ORDER BY id %s""" % data['order'])
+    query.append("""GROUP BY email ORDER BY id %s""" % data['order'])
 
     if 'limit' in data:
         query.append(""" LIMIT %s""" % data['limit'])

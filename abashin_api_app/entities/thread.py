@@ -296,20 +296,10 @@ def subscribe(**data):
 
     db = dbService.connect()
     cur = db.cursor()
-    cur.execute("""SELECT 1 FROM subscription
-                   WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
-    exists = cur.fetchone()
-    cur.close()
 
-    cur = db.cursor()
     try:
-        if not exists or exists != 1:
-            cur.execute("""INSERT INTO subscription
-                           VALUES (%s, %s, 1)""", (data['user'], data['thread'],))
-        else:
-            cur.execute("""UPDATE subscription
-                           SET isSubscribed = 1
-                           WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
+        cur.execute("""INSERT INTO subscription
+                       VALUES (%s, %s)""", (data['user'], data['thread'],))
         db.commit()
     except Exception as e:
         db.rollback()
@@ -329,18 +319,10 @@ def unsubscribe(**data):
 
     db = dbService.connect()
     cur = db.cursor()
-    cur.execute("""SELECT 1 FROM subscription
-                   WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
-    exists = cur.fetchone()
-    cur.close()
-
-    cur = db.cursor()
     try:
-        if exists and exists == 1:
-            cur.execute("""UPDATE subscription
-                           SET isSubscribed = 0
-                           WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
-            db.commit()
+        cur.execute("""DELETE FROM subscription
+                       WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
+        db.commit()
     except Exception as e:
         db.rollback()
         cur.close()
