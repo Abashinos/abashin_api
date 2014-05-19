@@ -24,7 +24,7 @@ def create(**data):
                     (data['date'], data['thread'], data['message'], data['user'], data['forum'],
                     data['parent'], int(data['isApproved']), int(data['isHighlighted']), int(data['isEdited']),
                     int(data['isSpam']), int(data['isDeleted']),))
-        post = cur.lastrowid
+        post_id = cur.lastrowid
         db.commit()
     except Exception as e:
         db.rollback()
@@ -32,25 +32,26 @@ def create(**data):
         db.close()
         raise e
 
-    cur.close()
-
-    cur = db.cursor()
     cur.execute("""UPDATE thread
                    SET posts = posts + 1
                    WHERE id = %s""", (data['thread'],))
     db.commit()
     cur.close()
-
-    cur = db.cursor()
-    cur.execute("""SELECT id, date, forum, isApproved, isDeleted, isEdited,
-                   isHighlighted, isSpam, message, thread, user
-                   FROM post
-                   WHERE id = %s""", (post,))
-    post = cur.fetchone()
-    cur.close()
     db.close()
 
-    post['date'] = post['date'].strftime("%Y-%m-%d %H:%M:%S")
+    post = {
+        'id': post_id,
+        'date': data['date'],
+        'forum': data['forum'],
+        'isApproved': data['isApproved'],
+        'isDeleted': data['isDeleted'],
+        'isEdited': data['isEdited'],
+        'isHighlighted': data['isHighlighted'],
+        'isSpam': data['isSpam'],
+        'message': data['message'],
+        'thread': data['thread'],
+        'user': data['user']
+    }
     return post
 
 

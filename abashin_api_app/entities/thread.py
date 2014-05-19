@@ -1,7 +1,6 @@
-import time
+
 from abashin_api_app import dbService
-from abashin_api_app.helpers import followerService
-from abashin_api_app.helpers.subscriptionService import listSubscriptions
+from abashin_api_app.entities import user
 from abashin_api_app.services.StringBuilder import StringBuilder
 from abashin_api_app.services.paramChecker import check_required_params, check_optional_param
 
@@ -20,26 +19,28 @@ def create(**data):
                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, 0)""",
                     (data['forum'], data['title'], data['isClosed'], data['isDeleted'],
                         data['user'], data['date'], data['message'], data['slug'],))
+        thread_id = cur.lastrowid
         db.commit()
     except Exception as e:
         cur.close()
         db.rollback()
         db.close()
         raise e
-    cur.close()
 
-    cur = db.cursor()
-    cur.execute("""SELECT id, date, forum, isClosed, isDeleted,
-                          message, slug, title, user
-                   FROM thread
-                   WHERE slug = %s""", (data['slug'],))
-    thread = cur.fetchone()
     cur.close()
     db.close()
 
-    thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
-    thread['isDeleted'] = bool(thread['isDeleted'])
-    thread['isClosed'] = bool(thread['isClosed'])
+    thread = {
+        'id': thread_id,
+        'date': data['date'],
+        'forum': data['forum'],
+        'isClosed': data['isClosed'],
+        'isDeleted': data['isDeleted'],
+        'message': data['message'],
+        'slug': data['slug'],
+        'title': data['title'],
+        'user': data['user']
+    }
 
     return thread
 
@@ -68,19 +69,8 @@ def details(db=0, close_db=True, **data):
 
     if 'related' in data:
         if 'user' in data['related']:
-            cur = db.cursor()
-
-            cur.execute("""SELECT id, email, isAnonymous, name, username, about
-                          FROM user
-                          WHERE email = %s""", (thread['user'],))
-            user_data = cur.fetchone()
-            cur.close()
-
-            user_data['isAnonymous'] = bool(user_data['isAnonymous'])
-            user_data['subscriptions'] = listSubscriptions(thread['user'], db)
-            user_data['followers'] = followerService.listFollowersOrFollowees(thread, ['followers', 'short'], db)
-            user_data['following'] = followerService.listFollowersOrFollowees(thread, ['followees', 'short'], db)
-            thread['user'] = user_data
+            user_data = {'user': thread['user']}
+            thread['user'] = user.details(db, False, **user_data)
         if 'forum' in data['related']:
             forum_data = {'forum': thread['forum']}
             thread['forum'] = forum.details(db, False, **forum_data)
@@ -151,13 +141,14 @@ def list(**data):
 
     cur = db.cursor()
     cur.execute(str(query), params)
-    list = cur.fetchall()
+    thread_list = cur.fetchall()
     cur.close()
+    db.close()
 
-    for thread in list:
+    for thread in thread_list:
         thread['date'] = thread['date'].strftime("%Y-%m-%d %H:%M:%S")
 
-    return list
+    return thread_list
 
 
 def open(**data):
@@ -305,14 +296,14 @@ def subscribe(**data):
 
     db = dbService.connect()
     cur = db.cursor()
-    cur.execute("""SELECT * FROM subscription
+    cur.execute("""SELECT 1 FROM subscription
                    WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
     exists = cur.fetchone()
     cur.close()
 
     cur = db.cursor()
     try:
-        if not exists or len(exists) == 0:
+        if not exists or exists != 1:
             cur.execute("""INSERT INTO subscription
                            VALUES (%s, %s, 1)""", (data['user'], data['thread'],))
         else:
@@ -338,14 +329,14 @@ def unsubscribe(**data):
 
     db = dbService.connect()
     cur = db.cursor()
-    cur.execute("""SELECT * FROM subscription
+    cur.execute("""SELECT 1 FROM subscription
                    WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
     exists = cur.fetchone()
     cur.close()
 
     cur = db.cursor()
     try:
-        if exists and len(exists) != 0:
+        if exists and exists == 1:
             cur.execute("""UPDATE subscription
                            SET isSubscribed = 0
                            WHERE user = %s AND thread = %s""", (data['user'], data['thread'],))
