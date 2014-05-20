@@ -61,24 +61,24 @@ def details(db=0, close_db=True, **data):
     user = cur.fetchone()
     cur.close()
 
-    if not user or len(user) == 0:
-        raise Exception("No user found")
-
-    if not user['subscriptions']:
-        user['subscriptions'] = []
+    if not user or len(user) or user.email is None == 0:
+        user = {}
     else:
-        user['subscriptions'] = [int(n) for n in user['subscriptions'].split()]
+        if not user['subscriptions']:
+            user['subscriptions'] = []
+        else:
+            user['subscriptions'] = [int(n) for n in user['subscriptions'].split()]
 
-    if not user['followers']:
-        user['followers'] = []
-    else:
-        user['followers'] = user['followers'].split()
-    if not user['following']:
-        user['following'] = []
-    else:
-        user['following'] = user['following'].split()
+        if not user['followers']:
+            user['followers'] = []
+        else:
+            user['followers'] = user['followers'].split()
+        if not user['following']:
+            user['following'] = []
+        else:
+            user['following'] = user['following'].split()
 
-    user['isAnonymous'] = bool(user['isAnonymous'])
+        user['isAnonymous'] = bool(user['isAnonymous'])
 
     if close_db:
         db.close()
