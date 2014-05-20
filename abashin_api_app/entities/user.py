@@ -61,7 +61,7 @@ def details(db=0, close_db=True, **data):
     user = cur.fetchone()
     cur.close()
 
-    if not user or len(user) or user.email is None == 0:
+    if not user or len(user) or user.email is None:
         user = {}
     else:
         if not user['subscriptions']:
